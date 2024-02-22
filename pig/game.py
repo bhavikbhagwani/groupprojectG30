@@ -40,10 +40,12 @@ class Game:
             self.computer_plays()
 
     def computer_plays(self):
+        computer_round = 0
         print(f"{self.computer.name} plays now")
         while True:
             choice = random.choice(self.roll_or_hold_list_computer)
             if choice == "roll":
+                computer_round += 1
                 computer_dice_value = self.computer.return_computer_rolled_dice_value()
                 print(f"{self.computer.name} rolled and got a {computer_dice_value}")
                 if computer_dice_value == 1:
@@ -56,6 +58,22 @@ class Game:
                     print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
                     self.check_if_computer_wins()
+            
+            if choice == "hold" and computer_round == 0: #first round computer always will roll (logical)
+                computer_round += 1
+                computer_dice_value = self.computer.return_computer_rolled_dice_value()
+                print(f"{self.computer.name} rolled and got a {computer_dice_value}")
+                if computer_dice_value == 1:
+                    print(f"This means that {self.computer.name} gains 0 points in this round")
+                    print(f"{self.computer.name}'s score is {self.computer.score}")
+                    self.computer.current_round_score = 0
+                    break
+                else:#dice value is not 1
+                    self.computer.current_round_score += computer_dice_value
+                    print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
+
+                    self.check_if_computer_wins()
+
             if choice == "hold":
                 self.computer.score += self.computer.current_round_score
                 print(f"{self.computer.name} decided to hold. {self.computer.name} gains {self.computer.current_round_score} points ")
