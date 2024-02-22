@@ -7,7 +7,8 @@ class Game:
         self.difficulty = None
         self.dice = dice.Dice()
         self.roll_or_hold_list_computer = ["roll","roll","hold"]
-        self.high_score = 50
+        self.max_score = 50
+        self.game_finished = False
 
     def set_player_names(self, player_name):
         self.player_1.name = player_name
@@ -35,11 +36,8 @@ class Game:
         print(f"Your score now is {self.player_1.score}")
         self.player_1.current_round_score = 0
 
-        if self.player_1.score >= 50:
-            print("Game is OVER")
-            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points")
-        
-        self.computer_plays()
+        if not self.check_if_player_wins():
+            self.computer_plays()
 
     def computer_plays(self):
         print(f"{self.computer.name} plays now")
@@ -56,7 +54,7 @@ class Game:
                 else:#dice value is not 1
                     self.computer.current_round_score += computer_dice_value
                     print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
-                    
+
                     self.check_if_computer_wins()
             if choice == "hold":
                 self.computer.score += self.computer.current_round_score
@@ -66,10 +64,17 @@ class Game:
                 break
     
     def check_if_computer_wins(self):
-        if self.computer.score + self.computer.current_round_score >= self.high_score:
+        if self.computer.score + self.computer.current_round_score >= self.max_score:
             self.computer.score += self.computer.current_round_score
             print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
             print(f"{self.computer.name}'s score now is {self.computer.score}")
             print("Game is OVER")
             print(f"{self.computer.name} wins with a score of {self.computer.score} points")
             self.game_finished = True
+    
+    def check_if_player_wins(self):
+        if self.player_1.score >= self.max_score:
+            print("Game is OVER")
+            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points")
+            self.game_finished = True
+            return True     
