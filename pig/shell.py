@@ -50,4 +50,19 @@ class Shell(cmd.Cmd):
         self.game.computer.set_computer_difficulty(difficulty)
         print(f"Difficulty changed to {difficulty}")
         print(f"You can now start to roll or hold!")
+    
+    def do_roll(self, _):
+        "player rolls the dice"
+        if self.game is None:
+            print("Please start a new game first. You can do this by typing 'start'")
+            return
+        if self.game.player_1.name is None:
+            print(f"Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            return
+        if self.game.computer.difficulty is None:
+            print(f"Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            return
         
+        
+        
+        self.game.player_rolls()
