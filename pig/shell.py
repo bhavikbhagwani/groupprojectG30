@@ -82,3 +82,10 @@ class Shell(cmd.Cmd):
         
         
         self.game.player_holds()
+
+    def do_exit(self, _):
+        """Exit the game."""
+        print("Thanks for playing! Goodbye!")
+        return True
+
+    
