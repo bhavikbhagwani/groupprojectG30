@@ -24,5 +24,15 @@ class Game:
             self.player_1.current_round_score += dice_value
             print(f"{self.player_1.name}'s current round score is {self.player_1.current_round_score}")
 
-     
+    
+    def player_holds(self):
+        self.player_1.score += self.player_1.current_round_score
+        print(f"{self.player_1.name} decided to hold. {self.player_1.name} will gain {self.player_1.current_round_score} points")
+        print(f"Your score now is {self.player_1.score}")
+        self.player_1.current_round_score = 0
+
+        if self.player_1.score >= 50:
+            print("Game is OVER")
+            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points")
+        
     
