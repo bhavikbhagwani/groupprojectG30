@@ -1,7 +1,9 @@
+import shell
 
 def main():
-    pass
-    #shell stuff here
+
+    pig_Shell = shell.Shell()
+    pig_Shell.cmdloop()
 
 
 if __name__ == "__main__":
