@@ -7,6 +7,7 @@ class Game:
         self.difficulty = None
         self.dice = dice.Dice()
         self.roll_or_hold_list_computer = ["roll","roll","hold"]
+        self.high_score = 50
 
     def set_player_names(self, player_name):
         self.player_1.name = player_name
@@ -20,7 +21,7 @@ class Game:
         if dice_value == 1:
             print(f"This means that {self.player_1.name} gains 0 points in this round")
             self.player_1.current_round_score = 0
-            
+
             self.computer_plays()
         
         else:#if doesnt roll a 1
@@ -55,10 +56,20 @@ class Game:
                 else:#dice value is not 1
                     self.computer.current_round_score += computer_dice_value
                     print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
-            
+                    
+                    self.check_if_computer_wins()
             if choice == "hold":
                 self.computer.score += self.computer.current_round_score
                 print(f"{self.computer.name} decided to hold. {self.computer.name} gains {self.computer.current_round_score} points ")
                 print(f"{self.computer.name}'s score now is {self.computer.score}")
                 self.computer.current_round_score = 0
                 break
+    
+    def check_if_computer_wins(self):
+        if self.computer.score + self.computer.current_round_score >= self.high_score:
+            self.computer.score += self.computer.current_round_score
+            print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
+            print(f"{self.computer.name}'s score now is {self.computer.score}")
+            print("Game is OVER")
+            print(f"{self.computer.name} wins with a score of {self.computer.score} points")
+            self.game_finished = True
