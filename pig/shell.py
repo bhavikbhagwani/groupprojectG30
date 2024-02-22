@@ -47,7 +47,7 @@ class Shell(cmd.Cmd):
             print(f"{arg} is not a valid difficulty level. Provide either easy, medium or hard")
             return
         
-        self.game.set_game_difficulty(difficulty)
+        self.game.computer.set_computer_difficulty(difficulty)
         print(f"Difficulty changed to {difficulty}")
         print(f"You can now start to roll or hold!")
         
