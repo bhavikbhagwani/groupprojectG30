@@ -87,5 +87,8 @@ class Shell(cmd.Cmd):
         """Exit the game."""
         print("Thanks for playing! Goodbye!")
         return True
-
+    
+    def do_cheat(self, _):
+        "Cheat in game to reach the game faster"
+        pass
     
