@@ -1,4 +1,4 @@
-import player, computer, dice, random
+import player, computer, dice, random, json
 
 class Game:
     def __init__(self):
@@ -99,6 +99,7 @@ class Game:
             print("Game is OVER")
             print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds")
             self.game_finished = True
+            self.write_into_file()
             return True
     
     def player_cheats(self):
@@ -122,3 +123,28 @@ class Game:
 
         if not self.check_if_player_wins():
             self.computer_plays()
+
+    def write_into_file(self):
+        player_name = self.player_1.name
+        player_score = self.player_1.score
+        player_rounds = self.player_1.num_rounds
+        difficulty = self.computer.difficulty
+
+        game_data = {
+            "player_name": player_name,
+            "score": player_score,
+            "num_rounds": player_rounds,
+            "difficulty": difficulty
+        }
+
+        try:
+            with open("json_file.json", "r") as file:
+                existing_data = json.load(file)
+        except FileNotFoundError:
+            existing_data = []
+        
+
+        existing_data.append(game_data)
+        with open("json_file.json","w") as file:
+            json.dump(existing_data, file, indent=4)
+
