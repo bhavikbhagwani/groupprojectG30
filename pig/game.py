@@ -148,3 +148,26 @@ class Game:
         with open("json_file.json","w") as file:
             json.dump(existing_data, file, indent=4)
 
+    def read_from_file(self):
+
+        print("Player statistics will be displayed in ascending order of rounds played.")
+        try:
+            with open("json_file.json", "r") as file:
+                scores = json.load(file)
+        except FileNotFoundError:
+            scores = []
+        
+        scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
+        
+        for player_stats in scores:
+            player_name = player_stats.get("player_name")
+            player_score = player_stats.get("score")
+            num_rounds = player_stats.get("num_rounds")
+            difficulty = player_stats.get("difficulty")
+
+            print(f"Player Name: {player_name}")
+            print(f"Score: {player_score}")
+            print(f"Number of Rounds: {num_rounds}")
+            print(f"Difficulty: {difficulty}")
+            print("\n")
+            
