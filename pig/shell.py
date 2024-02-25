@@ -101,3 +101,7 @@ class Shell(cmd.Cmd):
             return
         self.game.player_cheats()
     
+    def do_score(self, _):
+        "Check the score of the player and the computer"
+        print(f"Score of {self.game.player_1.name}: ({self.game.player_1.score})")
+        print(f"Score of computer: ({self.game.computer.score})")
