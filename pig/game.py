@@ -9,6 +9,7 @@ class Game:
         self.roll_or_hold_list_computer = ["roll","roll","hold"]
         self.max_score = 50
         self.game_finished = False
+        self.cheats_used = False
 
     def set_player_names(self, player_name):
         self.player_1.name = player_name
@@ -60,7 +61,8 @@ class Game:
                     self.computer.current_round_score += computer_dice_value
                     print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                    self.check_if_computer_wins()
+                    if self.check_if_computer_wins():
+                        break
             
             if choice == "hold" and computer_round == 0: #first round computer always will roll (logical)
                 computer_round += 1
@@ -75,7 +77,8 @@ class Game:
                     self.computer.current_round_score += computer_dice_value
                     print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                    self.check_if_computer_wins()
+                    if self.check_if_computer_wins():
+                        break
 
             if choice == "hold":
                 self.computer.num_rounds += 1
@@ -93,16 +96,19 @@ class Game:
             print("Game is OVER")
             print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
+            return True
     
     def check_if_player_wins(self):
         if self.player_1.score >= self.max_score:
             print("Game is OVER")
             print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
-            self.write_into_file()
+            if not self.cheats_used: #player stats only stored if cheats were not used
+                self.write_into_file()
             return True
     
     def player_cheats(self):
+        self.cheats_used = True
         self.player_1.num_rounds += 1
         print("You decided to cheat. You will roll a dice 6 times with only faces that have 6")
         dice_value = 6
@@ -149,8 +155,9 @@ class Game:
             json.dump(existing_data, file, indent=4)
 
     def read_from_file(self):
-
-        print("Player statistics will be displayed in ascending order of rounds played.")
+        print("\n")
+        print("Player statistics will be displayed in ascending order of rounds played (The high score is determined by the fewest rounds played).")
+        print("If cheats were used, your stats will not be shown here")
         try:
             with open("json_file.json", "r") as file:
                 scores = json.load(file)
