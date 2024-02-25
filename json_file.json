@@ -4,5 +4,23 @@
         "score": 60,
         "num_rounds": 2,
         "difficulty": "medium"
+    },
+    {
+        "player_name": "player_x",
+        "score": 54,
+        "num_rounds": 8,
+        "difficulty": "easy"
+    },
+    {
+        "player_name": "player_y",
+        "score": 52,
+        "num_rounds": 7,
+        "difficulty": "medium"
+    },
+    {
+        "player_name": "player_z",
+        "score": 51,
+        "num_rounds": 7,
+        "difficulty": "easy"
     }
 ]
