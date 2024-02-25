@@ -19,6 +19,9 @@ class Shell(cmd.Cmd):
 
     def do_name(self, arg):
         "set a new name for the player"
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
+            return
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
             return
@@ -26,12 +29,16 @@ class Shell(cmd.Cmd):
             print("Name was not provided. Type 'name' and your name afterwards please (e.g. name Larsson)")
             return
         
+        
         name = arg.strip()
         self.game.set_player_names(name)
         print(f"Name changed to {name}")
 
     def do_difficulty(self, arg):
         "set a difficulty for the game"
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
+            return
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
             return
@@ -41,6 +48,7 @@ class Shell(cmd.Cmd):
         if not arg:
             print("Difficulty was not provided. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard)")
             return
+        
         
         difficulty = arg.strip()
         if difficulty != "easy" and difficulty!= "medium" and difficulty!= "hard":
@@ -62,6 +70,9 @@ class Shell(cmd.Cmd):
         if self.game.computer.difficulty is None:
             print(f"Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
             return
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
+            return
         
         
         
@@ -77,6 +88,9 @@ class Shell(cmd.Cmd):
             return
         if self.game.computer.difficulty is None:
             print(f"Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            return
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
             return
         
         
@@ -98,6 +112,9 @@ class Shell(cmd.Cmd):
             return
         if self.game.computer.difficulty is None:
             print(f"Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            return
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
             return
         self.game.player_cheats()
     
