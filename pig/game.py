@@ -91,13 +91,13 @@ class Game:
             print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
             print(f"{self.computer.name}'s score now is {self.computer.score}")
             print("Game is OVER")
-            print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds")
+            print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
     
     def check_if_player_wins(self):
         if self.player_1.score >= self.max_score:
             print("Game is OVER")
-            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds")
+            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
             self.write_into_file()
             return True
