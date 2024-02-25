@@ -1,4 +1,4 @@
-import cmd
+import cmd, random
 from game import Game
 
 class Shell(cmd.Cmd):
@@ -12,7 +12,7 @@ class Shell(cmd.Cmd):
         
         self.game = None
     
-    def do_start(self, _):
+    def do_start(self):
         "start a brand new game"
         self.game = Game()
         print("New game started")
@@ -126,3 +126,10 @@ class Shell(cmd.Cmd):
     def do_scores(self, _):
         "read the scores from the file"
         self.game.read_from_file()
+    
+    def do_default(self, _):
+        "start game with default settings"
+        self.do_start()
+        n = random.randint(1,100)
+        self.do_name("player" + str(n))
+        self.do_difficulty("medium")
