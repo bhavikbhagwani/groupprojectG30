@@ -107,10 +107,12 @@ class Game:
             print(f"{self.player_1.name}'s current round score is {self.player_1.current_round_score}")
 
         print(f"{self.player_1.name} will gain {self.player_1.current_round_score} points")
-        self.player_1.current_round_score = 0
-
+        
         self.player_1.score += self.player_1.current_round_score
+        self.player_1.current_round_score = 0
+        
         print(f"Your score now is {self.player_1.score}")
+        
         
 
         if not self.check_if_player_wins():
