@@ -102,6 +102,7 @@ class Game:
             return True
     
     def player_cheats(self):
+        self.player_1.num_rounds += 1
         print("You decided to cheat. You will roll a dice 6 times with only faces that have 6")
         dice_value = 6
         for x in range(0,5):
