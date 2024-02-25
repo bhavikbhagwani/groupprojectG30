@@ -95,4 +95,23 @@ class Game:
             print("Game is OVER")
             print(f"{self.player_1.name} wins with a score of {self.player_1.score} points")
             self.game_finished = True
-            return True     
+            return True
+    
+    def player_cheats(self):
+        print("You decided to cheat. You will roll a dice 6 times with only faces that have 6")
+        dice_value = 6
+        for x in range(0,5):
+            print("(game) roll")
+            print(f"{self.player_1.name} rolled a {dice_value}")
+            self.player_1.current_round_score += dice_value
+            print(f"{self.player_1.name}'s current round score is {self.player_1.current_round_score}")
+
+        print(f"{self.player_1.name} will gain {self.player_1.current_round_score} points")
+        self.player_1.current_round_score = 0
+
+        self.player_1.score += self.player_1.current_round_score
+        print(f"Your score now is {self.player_1.score}")
+        
+
+        if not self.check_if_player_wins():
+            self.computer_plays()
