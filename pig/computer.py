@@ -7,6 +7,7 @@ class Computer:
         self.current_round_score = 0
         self.difficulty = None
         self.dice = dice.Dice()
+        self.num_rounds = 0
     
     def set_computer_difficulty(self, difficulty):
         self.difficulty = difficulty
