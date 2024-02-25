@@ -57,7 +57,7 @@ class Shell(cmd.Cmd):
         
         self.game.computer.set_computer_difficulty(difficulty)
         print(f"Difficulty changed to {difficulty}")
-        print(f"You can now start to roll or hold!")
+        print(f"You can now start to roll or hold or even cheat!")
     
     def do_roll(self, _):
         "player rolls the dice"
