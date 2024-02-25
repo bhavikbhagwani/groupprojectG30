@@ -90,5 +90,14 @@ class Shell(cmd.Cmd):
     
     def do_cheat(self, _):
         "Cheat in game to reach the game faster"
-        pass
+        if self.game is None:
+            print("Please start a new game first. You can do this by typing 'start'")
+            return
+        if self.game.player_1.name is None:
+            print(f"Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            return
+        if self.game.computer.difficulty is None:
+            print(f"Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            return
+        self.game.player_cheats()
     
