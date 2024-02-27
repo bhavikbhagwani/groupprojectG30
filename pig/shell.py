@@ -1,3 +1,10 @@
+"""Using the cmd module to create a shell for the main program.
+
+You can read about the cmd module in the docs:
+    cmd — support for line-oriented command interpreters
+    https://docs.python.org/3/library/cmd.html
+"""
+
 import cmd, random
 from game import Game
 

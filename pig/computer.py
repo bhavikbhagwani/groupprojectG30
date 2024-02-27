@@ -1,3 +1,10 @@
+"""
+Computer class
+This class instantiates the Computer
+and contains some methods to set difficulty of the computer
+and return a dice value according to the computer's difficulty
+"""
+
 import random, dice
 
 class Computer:

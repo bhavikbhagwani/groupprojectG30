@@ -1,4 +1,9 @@
 
+"""
+Player class
+This class instantiates a Player
+"""
+
 class Player:
     def __init__(self):
         self.name = None

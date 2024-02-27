@@ -1,3 +1,11 @@
+"""
+Game class
+This is where all the game takes place
+It instantiates the Game with its corresponding properties
+and is responsible for all the shell commands in the shell.py
+This is like the heart of the program 
+"""
+
 import player, computer, dice, random, json
 
 class Game:
