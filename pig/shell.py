@@ -12,7 +12,7 @@ class Shell(cmd.Cmd):
         
         self.game = None
     
-    def do_start(self):
+    def do_start(self, _):
         "start a brand new game"
         self.game = Game()
         print("New game started")
@@ -125,11 +125,14 @@ class Shell(cmd.Cmd):
 
     def do_scores(self, _):
         "read the scores from the file"
+        if self.game is None:
+            print("Please start a new game first. You can do this by typing 'start'")
+            return
         self.game.read_from_file()
     
     def do_default(self, _):
         "start game with default settings"
-        self.do_start()
+        self.do_start(self)
         n = random.randint(1,100)
         self.do_name("player" + str(n))
         self.do_difficulty("medium")
