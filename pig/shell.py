@@ -26,15 +26,16 @@ class Shell(cmd.Cmd):
 
     def do_name(self, arg):
         "set a new name for the player"
-        if self.game.game_finished:
-            print("Game is OVER. To start a new game type 'start'")
-            return
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
+            return
+        if self.game.game_finished:
+            print("Game is OVER. To start a new game type 'start'")
             return
         if not arg:
             print("Name was not provided. Type 'name' and your name afterwards please (e.g. name Larsson)")
             return
+        
         
         
         name = arg.strip()
@@ -126,6 +127,12 @@ class Shell(cmd.Cmd):
         self.game.player_cheats()
     
     def do_show(self, _):
+        if self.game is None:
+            print("Please start a new game first. You can do this by typing 'start'")
+            return
+        if self.game.player_1.name is None:
+            print(f"Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            return
         "Check the score of the player and the computer"
         print(f"Score of {self.game.player_1.name}: ({self.game.player_1.score})")
         print(f"Score of computer: ({self.game.computer.score})")
