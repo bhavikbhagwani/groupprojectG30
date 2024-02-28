@@ -4,7 +4,7 @@ Lets play the Pig Dice Game Normal Variation.
 You will play against the computer. You will roll the dice and the dice value
 gets added to your score.
 But be careful, if you get a one on the dice, you score a fat zero
-and add not points.
+and add no points.
 
 To start, first start the game using 'start' then
 change your name typing 'name' followed by your name and then

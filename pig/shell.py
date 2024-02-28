@@ -127,6 +127,7 @@ class Shell(cmd.Cmd):
         self.game.player_cheats()
     
     def do_show(self, _):
+        """Show player score and computer score"""
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
             return
