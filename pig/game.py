@@ -61,7 +61,7 @@ class Game:
             self.computer_plays()
 
     def computer_plays(self):
-        """Computer's Turn to Play."""
+        """Play computer's turn."""
         computer_round = 0
         print(f"{self.computer.name} plays now")
         while True:
@@ -134,7 +134,7 @@ class Game:
         self.player_1.num_rounds += 1
         print("You decided to cheat. You will roll a dice 6 times with only faces that have 6")
         dice_value = 6
-        for x in range(0,5):
+        for x in range(0, 5):
             print("(game) roll")
             print(f"{self.player_1.name} rolled a {dice_value}")
             self.player_1.current_round_score += dice_value
@@ -147,13 +147,11 @@ class Game:
 
         print(f"Your score now is {self.player_1.score}")
 
-
-
         if not self.check_if_player_wins():
             self.computer_plays()
 
     def write_into_file(self):
-        """Writing Player Stats in File."""
+        """Write Player Stats in File."""
         player_name = self.player_1.name
         player_score = self.player_1.score
         player_rounds = self.player_1.num_rounds
@@ -172,13 +170,12 @@ class Game:
         except FileNotFoundError:
             existing_data = []
 
-
         existing_data.append(game_data)
-        with open("json_file.json","w") as file:
+        with open("json_file.json", "w") as file:
             json.dump(existing_data, file, indent=4)
 
     def read_from_file(self):
-        """Reading Player Stats from File."""
+        """Read Player Stats from File."""
         print("\n")
 
         try:
@@ -187,7 +184,7 @@ class Game:
         except FileNotFoundError:
             scores = []
         if not scores:
-            print(f"No player stats yet available as no player as won yet")
+            print("No player stats yet available as no player as won yet")
         else:
             print("Player statistics will be displayed in ascending order of rounds played (The high score is determined by the fewest rounds played).")
             print("If cheats were used, your stats will not be shown here")

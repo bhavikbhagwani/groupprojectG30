@@ -3,11 +3,12 @@
 """Unit testing."""
 
 import unittest
-import dice, computer
+import dice
+import computer
+
 
 class TestDiceClass(unittest.TestCase):  # noqa: H601
     """Test the class."""
-
 
     def test_roll_a_dice(self):
         """Roll a dice and check value is in bounds."""
@@ -16,7 +17,7 @@ class TestDiceClass(unittest.TestCase):  # noqa: H601
         res = die.roll()
         exp = 1 <= res <= 6
         self.assertTrue(exp)
-    
+
     def test_roll_a_dice_for_computer(self):
         """Roll a dice and check value is in bounds."""
         computer_test = computer.Computer()
