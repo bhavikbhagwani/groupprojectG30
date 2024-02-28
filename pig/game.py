@@ -6,12 +6,11 @@ It instantiates the Game with its corresponding properties
 and is responsible for all the shell commands in the shell.py
 This is like the heart of the program
 """
-
+import random
+import json
 import player
 import computer
 import dice
-import random
-import json
 
 
 class Game:
@@ -76,12 +75,12 @@ class Game:
                     print(f"{self.computer.name}'s score is {self.computer.score}")
                     self.computer.current_round_score = 0
                     break
-                else:
-                    self.computer.current_round_score += computer_dice_value
-                    print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                    if self.check_if_computer_wins():
-                        break
+                self.computer.current_round_score += computer_dice_value
+                print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
+
+                if self.check_if_computer_wins():
+                    break
 
             if choice == "hold" and computer_round == 0:
                 computer_round += 1
@@ -92,12 +91,12 @@ class Game:
                     print(f"{self.computer.name}'s score is {self.computer.score}")
                     self.computer.current_round_score = 0
                     break
-                else:
-                    self.computer.current_round_score += computer_dice_value
-                    print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                    if self.check_if_computer_wins():
-                        break
+                self.computer.current_round_score += computer_dice_value
+                print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
+
+                if self.check_if_computer_wins():
+                    break
 
             if choice == "hold":
                 self.computer.num_rounds += 1
@@ -117,6 +116,7 @@ class Game:
             print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
             return True
+        return False
 
     def check_if_player_wins(self):
         """Check if the Player has Won."""
@@ -127,6 +127,7 @@ class Game:
             if not self.cheats_used:
                 self.write_into_file()
             return True
+        return False
 
     def player_cheats(self):
         """Player cheats in Game."""
@@ -134,7 +135,7 @@ class Game:
         self.player_1.num_rounds += 1
         print("You decided to cheat. You will roll a dice 6 times with only faces that have 6")
         dice_value = 6
-        for x in range(0, 5):
+        for _ in range(0, 5):
             print("(game) roll")
             print(f"{self.player_1.name} rolled a {dice_value}")
             self.player_1.current_round_score += dice_value
@@ -165,13 +166,13 @@ class Game:
         }
 
         try:
-            with open("json_file.json", "r") as file:
+            with open("json_file.json", "r", encoding="utf-8") as file:
                 existing_data = json.load(file)
         except FileNotFoundError:
             existing_data = []
 
         existing_data.append(game_data)
-        with open("json_file.json", "w") as file:
+        with open("json_file.json", "w", encoding="utf-8") as file:
             json.dump(existing_data, file, indent=4)
 
     def read_from_file(self):
@@ -179,7 +180,7 @@ class Game:
         print("\n")
 
         try:
-            with open("json_file.json", "r") as file:
+            with open("json_file.json", "r", encoding="utf-8") as file:
                 scores = json.load(file)
         except FileNotFoundError:
             scores = []

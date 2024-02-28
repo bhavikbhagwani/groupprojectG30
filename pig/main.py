@@ -20,8 +20,8 @@ import shell
 
 def main():
     """Create the Main Method."""
-    pig_Shell = shell.Shell()
-    pig_Shell.cmdloop()
+    pig_shell = shell.Shell()
+    pig_shell.cmdloop()
 
 
 if __name__ == "__main__":

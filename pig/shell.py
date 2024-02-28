@@ -60,7 +60,7 @@ class Shell(cmd.Cmd):
             return
 
         difficulty = arg.strip()
-        if difficulty != "easy" and difficulty != "medium" and difficulty != "hard":
+        if difficulty not in ("easy", "medium", "hard"):
             print(f"{arg} is not a valid difficulty level. Provide either easy, medium or hard")
             return
 

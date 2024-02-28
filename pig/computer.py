@@ -31,8 +31,8 @@ class Computer:
         if self.difficulty == "easy":
             easy_list_of_dice_values = [1, 1, 2, 2, 3, 4, 5, 6]
             return random.choice(easy_list_of_dice_values)
-        elif self.difficulty == "medium":
+        if self.difficulty == "medium":
             return self.dice.roll()
-        else:
-            hard_list_of_dice_values = [1, 2, 3, 4, 4, 5, 5, 6, 6]
-            return random.choice(hard_list_of_dice_values)
+
+        hard_list_of_dice_values = [1, 2, 3, 4, 4, 5, 5, 6, 6]
+        return random.choice(hard_list_of_dice_values)
