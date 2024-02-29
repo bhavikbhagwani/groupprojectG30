@@ -22,7 +22,6 @@ class Game:
         self.computer = computer.Computer()
         self.difficulty = None
         self.dice = dice.Dice()
-        self.roll_or_hold_list_computer = ["roll", "roll", "hold"]
         self.max_score = 50
         self.game_finished = False
         self.cheats_used = False
@@ -65,7 +64,7 @@ class Game:
         computer_round = 0
         print(f"{self.computer.name} plays now")
         while True:
-            choice = random.choice(self.roll_or_hold_list_computer)
+            choice = self.computer.return_decision_of_computer()
             if choice == "roll":
                 computer_round += 1
                 computer_dice_value = self.computer.return_computer_rolled_dice_value()

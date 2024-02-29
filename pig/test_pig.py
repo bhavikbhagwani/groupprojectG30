@@ -20,6 +20,16 @@ class TestDiceClass(unittest.TestCase):  # noqa: H601
         exp = 1 <= res <= 6
         self.assertTrue(exp)
 
+    def test_init_default_object(self):
+        """Instantiate an object and check its properties."""
+
+        die = dice.Dice()
+        self.assertIsInstance(die, dice.Dice)
+
+        res = die.faces
+        exp = 6
+        self.assertEqual(res, exp)
+
     
 
 class TestComputerClass(unittest.TestCase):
@@ -32,6 +42,16 @@ class TestComputerClass(unittest.TestCase):
         res = computer_test.return_computer_rolled_dice_value()
         exp = 1 <= res <= 6
         self.assertTrue(exp)
+
+    def test_decision_return_for_computer(self):
+        """Decision for computer."""
+        computer_test = computer.Computer()
+
+        res = computer_test.return_decision_of_computer()
+        exp = "roll" or "hold"
+        self.assertEqual(res,exp)
+
+    
 
 class TestPlayerClass(unittest.TestCase):
     """Test the Player Class."""
@@ -55,6 +75,6 @@ class TestGameClass(unittest.TestCase):
         res = game_test.set_player_names(name)
         exp = name
         self.assertEqual(res,exp)
-        
+
 if __name__ == "__main__":
     unittest.main()
