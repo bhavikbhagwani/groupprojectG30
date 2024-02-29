@@ -31,3 +31,10 @@ To run the game, one should go to the 'pig' directory and run
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
 You can get the list of commands by typing '?' or 'help'
 
+To start/restart the game you shall type 'start'.
+After this you should fill you name in and set the difficulty
+You can start/restart, change name and set difficulty anytime you want
+The previous 2 steps can be done faster by typint 'default' (play with default settings)
+
+After this you can roll, hold or cheat. If you cheat, your results and stats won't be stored/recorded. 
+A useful command is 'show' to show the results of you and the computer in the current game
