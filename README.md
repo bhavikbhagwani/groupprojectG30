@@ -38,3 +38,12 @@ The previous 2 steps can be done faster by typint 'default' (play with default s
 
 After this you can roll, hold or cheat. If you cheat, your results and stats won't be stored/recorded. 
 A useful command is 'show' to show the results of you and the computer in the current game
+
+# UNIT TESTING
+To effectively perform unit testing in the pig dice program you can
+implement 'make test' and 'make coverage' commands
+'make test' will run the linters and provide a rating for the overall code
+'make test' will also run 'make coverage' which you can do separately
+'make coverage' will inform you about the test coverage throughout the code
+proving percentages. A html file will also be created which you can open with your browser
+to have a better visualization of the code coverage
