@@ -69,7 +69,7 @@ class Game:
             f"rounds at {self.computer.difficulty} difficulty")
             if not self.cheats_used:
                 self.write_into_file(self.player_1.name, self.player_1.score, 
-                self.player_1.num_rounds, self.computer.difficulty)
+                self.player_1.num_rounds, self.computer.difficulty, "json_file.json")
         print("\n")
 
     def computer_plays(self):
@@ -194,9 +194,9 @@ class Game:
             if not self.cheats_used:
                 self.write_into_file(self.player_1.name,
                 self.player_1.score, self.player_1.num_rounds,
-                      self.computer.difficulty)
+                      self.computer.difficulty, "json_file.json")
 
-    def write_into_file(self, name, score, rounds, difficulty):
+    def write_into_file(self, name, score, rounds, difficulty,filename):
         """Write Player Stats in File."""
         player_name = name
         player_score = score
@@ -211,13 +211,13 @@ class Game:
         }
 
         try:
-            with open("json_file.json", "r", encoding="utf-8") as file:
+            with open(filename, "r", encoding="utf-8") as file:
                 existing_data = json.load(file)
         except FileNotFoundError:
             existing_data = []
 
         existing_data.append(game_data)
-        with open("json_file.json", "w", encoding="utf-8") as file:
+        with open(filename, "w", encoding="utf-8") as file:
             json.dump(existing_data, file, indent=4)
 
     def read_from_file(self):
