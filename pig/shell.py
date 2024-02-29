@@ -38,7 +38,8 @@ class Shell(cmd.Cmd):
             print("Game is OVER. To start a new game type 'start'")
             return
         if not arg:
-            print("Name was not provided. Type 'name' and your name afterwards please (e.g. name Larsson)")
+            print("Name was not provided. Type 'name'"
+                  "and your name afterwards please (e.g. name Larsson)")
             return
 
         name = arg.strip()
@@ -54,10 +55,12 @@ class Shell(cmd.Cmd):
             print("Please start a new game first. You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            print("Please provide a name first. Type 'name'"
+                  "and your name afterwards please (e.g. name Patrick).")
             return
         if not arg:
-            print("Difficulty was not provided. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard)")
+            print("Difficulty was not provided. Type 'difficulty'"
+                  "and the difficulty afterwards please (easy,medium,hard)")
             return
 
         difficulty = arg.strip()
@@ -75,10 +78,12 @@ class Shell(cmd.Cmd):
             print("Please start a new game first. You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            print("Please provide a name first. Type 'name'"
+                  "and your name afterwards please (e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. Type 'difficulty'"
+                   "and the difficulty afterwards please (easy,medium,hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
@@ -92,10 +97,12 @@ class Shell(cmd.Cmd):
             print("Please start a new game first. You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            print("Please provide a name first. Type 'name'"
+                  "and your name afterwards please (e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. Type 'difficulty'"
+                   "and the difficulty afterwards please (easy,medium,hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
@@ -114,10 +121,12 @@ class Shell(cmd.Cmd):
             print("Please start a new game first. You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            print("Please provide a name first. Type 'name'"
+                  "and your name afterwards please (e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty' and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. Type 'difficulty'"
+                   "and the difficulty afterwards please (easy,medium,hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
@@ -130,7 +139,8 @@ class Shell(cmd.Cmd):
             print("Please start a new game first. You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name' and your name afterwards please (e.g. name Patrick).")
+            print("Please provide a name first. Type 'name'"
+                  "and your name afterwards please (e.g. name Patrick).")
             return
 
         print(f"Score of {self.game.player_1.name}: ({self.game.player_1.score})")

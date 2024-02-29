@@ -38,7 +38,7 @@ class Computer:
 
         hard_list_of_dice_values = [1, 2, 3, 4, 4, 5, 5, 6, 6]
         return random.choice(hard_list_of_dice_values)
-    
+
     def return_decision_of_computer(self):
         """Return either roll or hold."""
         return random.choice(self.roll_or_hold_list_computer)
