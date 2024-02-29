@@ -32,6 +32,7 @@ class Shell(cmd.Cmd):
         """Set a new name for the player."""
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
@@ -144,7 +145,11 @@ class Shell(cmd.Cmd):
 
     def do_default(self, _):
         """Start game with default settings."""
+        list_of_num = []
         self.do_start(self)
         n = random.randint(1, 100)
+        while n in list_of_num:
+            n = random.randint(1, 100)
+        list_of_num.append(n)
         self.do_name("player" + str(n))
         self.do_difficulty("medium")
