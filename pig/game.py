@@ -31,10 +31,11 @@ class Game:
         """Set name for Player."""
         self.player_1.name = player_name
         self.computer.name = "computer"
+        return self.player_1.name
 
     def player_rolls(self):
         """Player decides to Roll."""
-        dice_value = self.dice.roll()
+        dice_value = self.player_1.roll()
         print(f"{self.player_1.name} rolled a {dice_value}")
 
         if dice_value == 1:
