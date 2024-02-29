@@ -26,6 +26,7 @@ class Computer:
     def set_computer_difficulty(self, difficulty):
         """Set Difficulty of Computer."""
         self.difficulty = difficulty
+        return self.difficulty
 
     def return_computer_rolled_dice_value(self):
         """Return dice_value by Difficulty."""

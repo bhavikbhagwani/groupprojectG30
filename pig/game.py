@@ -56,9 +56,14 @@ class Game:
         print(f"Your score now is {self.player_1.score}")
         self.player_1.current_round_score = 0
 
-        if not self.check_if_player_wins():
+        if not self.check_if_player_wins(self.player_1.score):
             self.computer_plays()
-
+        else:
+            print("Game is OVER")
+            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds at {self.computer.difficulty} difficulty")
+            if not self.cheats_used:
+                self.write_into_file(self.player_1.name, self.player_1.score, self.player_1.num_rounds, self.computer.difficulty)
+        
     def computer_plays(self):
         """Play computer's turn."""
         computer_round = 0
@@ -79,7 +84,11 @@ class Game:
                 self.computer.current_round_score += computer_dice_value
                 print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                if self.check_if_computer_wins():
+                if self.check_if_computer_wins(self.computer.current_round_score, self.computer.score):
+                    print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
+                    print(f"{self.computer.name}'s score now is {self.computer.score}")
+                    print("Game is OVER")
+                    print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
                     break
 
             if choice == "hold" and computer_round == 0:
@@ -95,7 +104,11 @@ class Game:
                 self.computer.current_round_score += computer_dice_value
                 print(f"{self.computer.name}'s current round score is {self.computer.current_round_score}")
 
-                if self.check_if_computer_wins():
+                if self.check_if_computer_wins(self.computer.current_round_score, self.computer.score):
+                    print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
+                    print(f"{self.computer.name}'s score now is {self.computer.score}")
+                    print("Game is OVER")
+                    print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
                     break
 
             if choice == "hold":
@@ -106,26 +119,18 @@ class Game:
                 self.computer.current_round_score = 0
                 break
 
-    def check_if_computer_wins(self):
+    def check_if_computer_wins(self, current_round_score, score):
         """Check if Computer has Won."""
-        if self.computer.score + self.computer.current_round_score >= self.max_score:
+        if score + current_round_score >= self.max_score:
             self.computer.score += self.computer.current_round_score
-            print(f"{self.computer.name} decided to hold. {self.computer.name} will gain {self.computer.current_round_score} points")
-            print(f"{self.computer.name}'s score now is {self.computer.score}")
-            print("Game is OVER")
-            print(f"{self.computer.name} wins with a score of {self.computer.score} points in {self.computer.num_rounds} rounds at {self.computer.difficulty} difficulty")
             self.game_finished = True
             return True
         return False
 
-    def check_if_player_wins(self):
+    def check_if_player_wins(self, score):
         """Check if the Player has Won."""
-        if self.player_1.score >= self.max_score:
-            print("Game is OVER")
-            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds at {self.computer.difficulty} difficulty")
+        if score >= self.max_score:
             self.game_finished = True
-            if not self.cheats_used:
-                self.write_into_file()
             return True
         return False
 
@@ -148,21 +153,26 @@ class Game:
 
         print(f"Your score now is {self.player_1.score}")
 
-        if not self.check_if_player_wins():
+        if not self.check_if_player_wins(self.player_1.score):
             self.computer_plays()
+        else:
+            print("Game is OVER")
+            print(f"{self.player_1.name} wins with a score of {self.player_1.score} points in {self.player_1.num_rounds} rounds at {self.computer.difficulty} difficulty")
+            if not self.cheats_used:
+                self.write_into_file(self.player_1.name, self.player_1.score, self.player_1.num_rounds, self.computer.difficulty)
 
-    def write_into_file(self):
+    def write_into_file(self, name, score, rounds, difficulty):
         """Write Player Stats in File."""
-        player_name = self.player_1.name
-        player_score = self.player_1.score
-        player_rounds = self.player_1.num_rounds
-        difficulty = self.computer.difficulty
+        player_name = name
+        player_score = score
+        player_rounds = rounds
+        player_difficulty = difficulty
 
         game_data = {
             "player_name": player_name,
             "score": player_score,
             "num_rounds": player_rounds,
-            "difficulty": difficulty
+            "difficulty": player_difficulty
         }
 
         try:
