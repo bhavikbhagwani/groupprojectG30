@@ -2,6 +2,7 @@
 
 """Unit testing."""
 
+import os
 import json
 import random
 import unittest
@@ -100,6 +101,7 @@ class TestGameClass(unittest.TestCase):
 
     def test_player_cheats(self):
         """Cheat and check the modifications."""
+        print("Example of a cheat:")
         game_test = game.Game()
         current_num_rounds = game_test.player_1.num_rounds
         current_score = game_test.player_1.score
@@ -114,14 +116,15 @@ class TestGameClass(unittest.TestCase):
     def test_write_into_file(self):
         """Test writing Player Stats into File."""
         game_instance = game.Game()
-        game_instance.write_into_file("example-name", 100, 1000000, "easy")
+        game_instance.write_into_file("example-name", 100, 1000000, "easy", "temp_file.json")
 
-        with open("json_file.json", "r", encoding="utf-8") as file:
+        with open("temp_file.json", "r", encoding="utf-8") as file:
             data_written = json.load(file)
 
         self.assertIn({"player_name": "example-name", "score": 100\
                        , "num_rounds": 1000000, "difficulty": "easy"}, data_written)
-    
+
+        os.remove("temp_file.json")
 
 if __name__ == "__main__":
     unittest.main()
