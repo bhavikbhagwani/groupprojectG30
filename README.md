@@ -4,6 +4,8 @@ Group Project of Group 30 (Bhavik Bhagwani, Ludvig Dahlberg, Jacobs Kasarachi)
 Welcome to the Pig Dice Game! You are the player and you play against the computer.
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
+## SETTING VENV
+You can set a virtual environment using 'make venv'.
 
 # RULES
 
