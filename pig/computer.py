@@ -31,12 +31,12 @@ class Computer:
     def return_computer_rolled_dice_value(self):
         """Return dice_value by Difficulty."""
         if self.difficulty == "easy":
-            easy_list_of_dice_values = [1, 1, 2, 2, 3, 4, 5, 6]
+            easy_list_of_dice_values = [1, 1, 2, 2, 2, 3, 3, 4, 5, 6]
             return random.choice(easy_list_of_dice_values)
         if self.difficulty == "medium":
             return self.dice.roll()
 
-        hard_list_of_dice_values = [1, 2, 3, 4, 4, 5, 5, 6, 6]
+        hard_list_of_dice_values = [1, 5, 5, 6, 6]
         return random.choice(hard_list_of_dice_values)
 
     def return_decision_of_computer(self):

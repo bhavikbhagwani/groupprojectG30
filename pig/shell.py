@@ -7,6 +7,7 @@ You can read about the cmd module in the docs:
 
 import cmd
 import random
+import json
 from game import Game
 
 
@@ -41,8 +42,20 @@ class Shell(cmd.Cmd):
             print("Name was not provided. Type 'name'"
                   "and your name afterwards please (e.g. name Larsson)")
             return
-
+        
         name = arg.strip()
+        scores = self.game.read_from_file("json_file.json")
+        for player_stats in scores:
+
+                player_name = player_stats.get("player_name")
+
+                if name == player_name:
+                    print("Name already exists, choose another name")
+                    print("\n")
+                    return
+        
+
+        
         self.game.set_player_names(name)
         print(f"Name changed to {name}")
 
@@ -88,8 +101,18 @@ class Shell(cmd.Cmd):
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
-
-        self.game.player_rolls()
+        
+        dice_value = self.game.player_1.roll()
+        x = self.game.player_rolls(dice_value)
+        print("\n")
+        print(f"{x[0]} rolled a {x[3]}")
+        if x[4]:
+            print(f"{x[0]} will gain 0 points")
+            self._do_computer_plays_now()
+            #computer plays
+        else:
+            print(f"Your current round score is {x[1]}")
+        print("\n")
 
     def do_hold(self, _):
         """Player holds."""
@@ -107,8 +130,24 @@ class Shell(cmd.Cmd):
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
+        
+        x = self.game.player_holds()
+        print(f"{x[0]} decided to hold.")
+        print(f"Your score now is {x[1]}")
+        print("\n")
 
-        self.game.player_holds()
+        if not self.game.check_if_player_wins(self.game.player_1.score):
+            self._do_computer_plays_now()
+        else:
+            y = self.game.get_player_info()
+            print("Game is OVER")
+            print(f"{y[0]} wins with a score of"
+            f"{y[1]} points in {y[2]}"
+            f"rounds at {y[3]} difficulty")
+            if not self.game.cheats_used:
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, 
+                self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
+        
 
     def do_exit(self, _):
         """Exit the game."""
@@ -131,7 +170,27 @@ class Shell(cmd.Cmd):
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
-        self.game.player_cheats()
+        
+        
+        
+        
+        print("You decided to cheat. You will get 30 free points")
+        z = self.game.player_cheats()
+        
+
+        print(f"Your score now is {z[0]}")
+
+        if not self.game.check_if_player_wins(self.game.player_1.score):
+            self._do_computer_plays_now()
+        else:
+            y = self.game.get_player_info()
+            print("Game is OVER")
+            print(f"{y[0]} wins with a score of"
+            f"{y[1]} points in {y[2]}"
+            f"rounds at {y[3]} difficulty")
+            if not self.game.cheats_used:
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, 
+                self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
 
     def do_show(self, _):
         """Show player score and computer score."""
@@ -143,18 +202,43 @@ class Shell(cmd.Cmd):
                   "and your name afterwards please (e.g. name Patrick).")
             return
 
-        print(f"Score of {self.game.player_1.name}: ({self.game.player_1.score})")
-        print(f"Score of computer: ({self.game.computer.score})")
+        name_scores = self.game.get_scores()
+        print(f"Score of {name_scores[0]}: ({name_scores[1]})")
+        print(f"Score of {name_scores[2]}: ({name_scores[3]})")
 
     def do_scores(self, _):
         """Read the scores from the file."""
         if self.game is None:
             print("Please start a new game first. You can do this by typing 'start'")
             return
-        self.game.read_from_file()
+        print("Player statistics will be displayed"
+        "in ascending order of rounds played"
+        "(The high score is determined by the fewest rounds played).")
+        print("If you don't see your game here, you cheated or haven't played yet")
+
+        scores = self.game.read_from_file("json_file.json")
+        if scores is None:
+            print("No games found yet")
+        else:
+
+            scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
+
+            for player_stats in scores:
+
+                player_name = player_stats.get("player_name")
+                player_score = player_stats.get("score")
+                num_rounds = player_stats.get("num_rounds")
+                difficulty = player_stats.get("difficulty")
+
+                print(f"Player Name: {player_name}")
+                print(f"Score: {player_score}")
+                print(f"Number of Rounds: {num_rounds}")
+                print(f"Difficulty: {difficulty}")
+                print("\n")
 
     def do_default(self, _):
         """Start game with default settings."""
+        print("\n")
         list_of_num = []
         self.do_start(self)
         n = random.randint(1, 100)
@@ -163,3 +247,101 @@ class Shell(cmd.Cmd):
         list_of_num.append(n)
         self.do_name("player" + str(n))
         self.do_difficulty("medium")
+        print("\n")
+    
+    def _do_write_into_file(self, name, score, rounds, difficulty,filename):
+        """Write Player Stats in File."""
+        player_name = name
+        player_score = score
+        player_rounds = rounds
+        player_difficulty = difficulty
+
+        game_data = {
+            "player_name": player_name,
+            "score": player_score,
+            "num_rounds": player_rounds,
+            "difficulty": player_difficulty
+        }
+
+        try:
+            with open(filename, "r", encoding="utf-8") as file:
+                existing_data = json.load(file)
+        except FileNotFoundError:
+            existing_data = []
+
+        existing_data.append(game_data)
+        with open(filename, "w", encoding="utf-8") as file:
+            json.dump(existing_data, file, indent=4)
+
+        
+    def _do_computer_plays_now(self):
+        print(f"{self.game.computer.name} plays now")
+        computer_round = 0
+        
+        while True:
+            choice = self.game.computer.return_decision_of_computer()
+            if choice == "roll":
+                computer_round += 1
+                computer_dice_value = self.game.computer.return_computer_rolled_dice_value()
+                print(f"{self.game.computer.name} rolled and got a {computer_dice_value}")
+                if computer_dice_value == 1:
+                    self.game.computer.num_rounds += 1
+                    print(f"This means that {self.game.computer.name} gains 0 points in this round")
+                    print(f"{self.game.computer.name}'s score is {self.game.computer.score}")
+                    self.game.computer.current_round_score = 0
+                    print("\n")
+                    break
+
+                self.game.computer.current_round_score += computer_dice_value
+                print(f"{self.game.computer.name}'s current"
+                f"round score is {self.game.computer.current_round_score}")
+
+                if self.game.check_if_computer_wins(
+                    self.game.computer.current_round_score, self.game.computer.score):
+                    print(f"{self.game.computer.name} decided to hold."
+                    f"{self.game.computer.name} will gain {self.game.computer.current_round_score} points")
+                    print(f"{self.computer.name}'s score now is {self.game.computer.score}")
+                    print("Game is OVER")
+                    print(f"{self.game.computer.name} wins with a score"
+                           f"of {self.game.computer.score} points in"
+                    f"{self.game.computer.num_rounds}"
+                      f"rounds at {self.game.computer.difficulty}"
+                        f"difficulty")
+                    break
+
+            if choice == "hold" and computer_round == 0:
+                computer_round += 1
+                computer_dice_value = self.game.computer.return_computer_rolled_dice_value()
+                print(f"{self.game.computer.name} rolled and got a {computer_dice_value}")
+                if computer_dice_value == 1:
+                    print(f"This means that {self.game.computer.name} gains 0 points in this round")
+                    print(f"{self.game.computer.name}'s score is {self.game.computer.score}")
+                    self.game.computer.current_round_score = 0
+                    break
+
+                self.game.computer.current_round_score += computer_dice_value
+                print(f"{self.game.computer.name}'s current"
+                       f"round score is {self.game.computer.current_round_score}")
+
+                if self.game.check_if_computer_wins(
+                    self.game.computer.current_round_score, self.game.computer.score):
+                    print(f"{self.game.computer.name} decided"
+                           f"to hold. {self.game.computer.name}"
+                           f"will gain {self.game.computer.current_round_score} points")
+                    print(f"{self.game.computer.name}'s"
+                           f"score now is {self.game.computer.score}")
+                    print("Game is OVER")
+                    print(f"{self.game.computer.name} wins with"
+                           f"a score of {self.game.computer.score} points"
+                          f"in {self.game.computer.num_rounds} rounds"
+                            f"at {self.game.computer.difficulty} difficulty")
+                    break
+
+            if choice == "hold":
+                self.game.computer.num_rounds += 1
+                self.game.computer.score += self.game.computer.current_round_score
+                print(f"{self.game.computer.name} decided to hold."
+                       f"{self.game.computer.name} gains {self.game.computer.current_round_score} points")
+                print(f"{self.game.computer.name}'s score now is {self.game.computer.score}")
+                self.game.computer.current_round_score = 0
+                break
