@@ -32,7 +32,8 @@ class Shell(cmd.Cmd):
     def do_name(self, arg):
         """Set a new name for the player."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             print("You can also type 'default' to start the game faster")
             return
         if self.game.game_finished:
@@ -42,20 +43,18 @@ class Shell(cmd.Cmd):
             print("Name was not provided. Type 'name'"
                   "and your name afterwards please (e.g. name Larsson)")
             return
-        
+
         name = arg.strip()
         scores = self.game.read_from_file("json_file.json")
         for player_stats in scores:
 
-                player_name = player_stats.get("player_name")
+            player_name = player_stats.get("player_name")
 
-                if name == player_name:
-                    print("Name already exists, choose another name")
-                    print("\n")
-                    return
-        
+            if name == player_name:
+                print("Name already exists, choose another name")
+                print("\n")
+                return
 
-        
         self.game.set_player_names(name)
         print(f"Name changed to {name}")
 
@@ -65,20 +64,24 @@ class Shell(cmd.Cmd):
             print("Game is OVER. To start a new game type 'start'")
             return
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name'"
-                  "and your name afterwards please (e.g. name Patrick).")
+            print("Type 'name' and your name afterwards please. ", end="")
+            print("(e.g. name Patrick).")
             return
         if not arg:
-            print("Difficulty was not provided. Type 'difficulty'"
-                  "and the difficulty afterwards please (easy,medium,hard)")
+            print("Difficulty was not provided. ", end="")
+            print("Type 'difficulty' and the difficulty ",end="")
+            print("afterwards please (easy, medium, hard)")
+
             return
 
         difficulty = arg.strip()
         if difficulty not in ("easy", "medium", "hard"):
-            print(f"{arg} is not a valid difficulty level. Provide either easy, medium or hard")
+            print(f"{arg} is not a valid difficulty level",end="")
+            print("Provide either easy, medium or hard")
             return
 
         self.game.computer.set_computer_difficulty(difficulty)
@@ -88,20 +91,22 @@ class Shell(cmd.Cmd):
     def do_roll(self, _):
         """Player rolls the dice."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name'"
-                  "and your name afterwards please (e.g. name Patrick).")
+            print("Type 'name' and your name afterwards please. ", end="")
+            print("(e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty'"
-                   "and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. ", end="")
+            print("Type 'difficulty' and the difficulty", end="")
+            print("afterwards please (easy, medium, hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
-        
+
         dice_value = self.game.player_1.roll()
         x = self.game.player_rolls(dice_value)
         print("\n")
@@ -109,7 +114,6 @@ class Shell(cmd.Cmd):
         if x[4]:
             print(f"{x[0]} will gain 0 points")
             self._do_computer_plays_now()
-            #computer plays
         else:
             print(f"Your current round score is {x[1]}")
         print("\n")
@@ -117,20 +121,22 @@ class Shell(cmd.Cmd):
     def do_hold(self, _):
         """Player holds."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name'"
-                  "and your name afterwards please (e.g. name Patrick).")
+            print("Type 'name' and your name afterwards please. ", end="")
+            print("(e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty'"
-                   "and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. ", end="")
+            print("Type 'difficulty' and the difficulty", end="")
+            print("afterwards please (easy, medium, hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
-        
+
         x = self.game.player_holds()
         print(f"{x[0]} decided to hold.")
         print(f"Your score now is {x[1]}")
@@ -141,13 +147,13 @@ class Shell(cmd.Cmd):
         else:
             y = self.game.get_player_info()
             print("Game is OVER")
-            print(f"{y[0]} wins with a score of"
-            f"{y[1]} points in {y[2]}"
-            f"rounds at {y[3]} difficulty")
+            print(f"{y[0]} wins with a score of", end="")
+            print(f"{y[1]} points in {y[2]}", end="")
+            print(f"rounds at {y[3]} difficulty")
+
             if not self.game.cheats_used:
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, 
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score,
                 self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
-        
 
     def do_exit(self, _):
         """Exit the game."""
@@ -157,26 +163,24 @@ class Shell(cmd.Cmd):
     def do_cheat(self, _):
         """Cheat in game to reach the game faster."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name'"
-                  "and your name afterwards please (e.g. name Patrick).")
+            print("Type 'name' and your name afterwards please. ", end="")
+            print("(e.g. name Patrick).")
             return
         if self.game.computer.difficulty is None:
-            print("Difficulty is not yet set. Type 'difficulty'"
-                   "and the difficulty afterwards please (easy,medium,hard).")
+            print("Difficulty is not yet set. ", end="")
+            print("Type 'difficulty' and the difficulty", end="")
+            print("afterwards please (easy, medium, hard).")
             return
         if self.game.game_finished:
             print("Game is OVER. To start a new game type 'start'")
             return
-        
-        
-        
-        
+
         print("You decided to cheat. You will get 30 free points")
         z = self.game.player_cheats()
-        
 
         print(f"Your score now is {z[0]}")
 
@@ -185,21 +189,23 @@ class Shell(cmd.Cmd):
         else:
             y = self.game.get_player_info()
             print("Game is OVER")
-            print(f"{y[0]} wins with a score of"
-            f"{y[1]} points in {y[2]}"
-            f"rounds at {y[3]} difficulty")
+            print(f"{y[0]} wins with a score of", end="")
+            print(f"{y[1]} points in {y[2]}", end="")
+            print(f"rounds at {y[3]} difficulty")
+
             if not self.game.cheats_used:
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, 
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score,
                 self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
 
     def do_show(self, _):
         """Show player score and computer score."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
         if self.game.player_1.name is None:
-            print("Please provide a name first. Type 'name'"
-                  "and your name afterwards please (e.g. name Patrick).")
+            print("Type 'name' and your name afterwards please. ", end="")
+            print("(e.g. name Patrick).")
             return
 
         name_scores = self.game.get_scores()
@@ -209,11 +215,14 @@ class Shell(cmd.Cmd):
     def do_scores(self, _):
         """Read the scores from the file."""
         if self.game is None:
-            print("Please start a new game first. You can do this by typing 'start'")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
             return
-        print("Player statistics will be displayed"
-        "in ascending order of rounds played"
-        "(The high score is determined by the fewest rounds played).")
+
+        print("Player statistics will be displayed", end="")
+        print("in ascending order of rounds played.", end="")
+        print("(The high score is determined by the fewest rounds played).")
+
         print("If you don't see your game here, you cheated or haven't played yet")
 
         scores = self.game.read_from_file("json_file.json")
@@ -248,8 +257,8 @@ class Shell(cmd.Cmd):
         self.do_name("player" + str(n))
         self.do_difficulty("medium")
         print("\n")
-    
-    def _do_write_into_file(self, name, score, rounds, difficulty,filename):
+
+    def _do_write_into_file(self, name, score, rounds, difficulty, filename):
         """Write Player Stats in File."""
         player_name = name
         player_score = score
@@ -273,11 +282,10 @@ class Shell(cmd.Cmd):
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(existing_data, file, indent=4)
 
-        
     def _do_computer_plays_now(self):
         print(f"{self.game.computer.name} plays now")
         computer_round = 0
-        
+
         while True:
             choice = self.game.computer.return_decision_of_computer()
             if choice == "roll":
@@ -298,9 +306,11 @@ class Shell(cmd.Cmd):
 
                 if self.game.check_if_computer_wins(
                     self.game.computer.current_round_score, self.game.computer.score):
-                    print(f"{self.game.computer.name} decided to hold."
-                    f"{self.game.computer.name} will gain {self.game.computer.current_round_score} points")
-                    print(f"{self.computer.name}'s score now is {self.game.computer.score}")
+                    print(f"{self.game.computer.name} decided to hold.")
+                    print(f"{self.game.computer.name} will gain", end="")
+                    print(f"{self.game.computer.current_round_score} points")
+
+                    print(f"{self.game.computer.name}'s score now is {self.game.computer.score}")
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins with a score"
                            f"of {self.game.computer.score} points in"
@@ -340,8 +350,9 @@ class Shell(cmd.Cmd):
             if choice == "hold":
                 self.game.computer.num_rounds += 1
                 self.game.computer.score += self.game.computer.current_round_score
-                print(f"{self.game.computer.name} decided to hold."
-                       f"{self.game.computer.name} gains {self.game.computer.current_round_score} points")
+                print(f"{self.game.computer.name} decided to hold.")
+                print(f"{self.game.computer.name} gains", end="")
+                print(f"{self.game.computer.current_round_score} points")
                 print(f"{self.game.computer.name}'s score now is {self.game.computer.score}")
                 self.game.computer.current_round_score = 0
                 break
