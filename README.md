@@ -7,7 +7,7 @@ reach 50 points and win the game. Have fun and good luck.
 
 ## STARTING OFF
 
-Make sure you have make installed in your machine to make it easy for you
+Make sure you have 'make' installed in your machine to make it easy for you
 to run certain features such as for testing and generating documentation
 
 ## SETTING VENV
@@ -22,7 +22,7 @@ Make sure your python version is below 3.12.0 as 'make pdoc' will only work with
 Run 'make installed' to see what is installed in your venv
 If its only ... then run 'make install' to install all features for this project
 
-## RULES
+## RULES OF GAME
 
 Player and computer take turns rolling a die.
 If either rolls a 1, they lose their current round's points, and it's the next opponent's turn.
@@ -42,18 +42,26 @@ To run the game, one should go to the 'pig' directory and run
 
                     python main.py
 
-## HELP IN GAME
+## HELP IN GAME AND HOW TO PLAY AND OTHER COMMANDS
 
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
 You can get the list of commands by typing '?' or 'help'
 
 To start/restart the game you shall type 'start'.
 After this you should fill you name in and set the difficulty
+This difficulty manages the intelligence of the computer
 You can start/restart, change name and set difficulty anytime you want
 The previous 2 steps can be done faster by typint 'default' (play with default settings)
 
-After this you can roll, hold or cheat. If you cheat, your results and stats won't be stored/recorded. 
+After this you can roll, hold or cheat using 'roll', 'hold', or 'cheat'
+If you cheat, your results and stats won't be stored/recorded. 
 A useful command is 'show' to show the results of you and the computer in the current game
+
+Other commands:
+rules - to see the rules and instructions of the game
+scores - to see the highscore list from the played games so far
+exit - exit or quits the game
+
 
 ## UNIT TESTING
 
