@@ -73,14 +73,14 @@ class Shell(cmd.Cmd):
             return
         if not arg:
             print("Difficulty was not provided. ", end="")
-            print("Type 'difficulty' and the difficulty ",end="")
+            print("Type 'difficulty' and the difficulty ", end="")
             print("afterwards please (easy, medium, hard)")
 
             return
 
         difficulty = arg.strip()
         if difficulty not in ("easy", "medium", "hard"):
-            print(f"{arg} is not a valid difficulty level",end="")
+            print(f"{arg} is not a valid difficulty level", end="")
             print("Provide either easy, medium or hard")
             return
 
@@ -152,8 +152,7 @@ class Shell(cmd.Cmd):
             print(f"rounds at {y[3]} difficulty")
 
             if not self.game.cheats_used:
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score,
-                self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
 
     def do_exit(self, _):
         """Exit the game."""
@@ -194,8 +193,7 @@ class Shell(cmd.Cmd):
             print(f"rounds at {y[3]} difficulty")
 
             if not self.game.cheats_used:
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score,
-                self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
+                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
 
     def do_show(self, _):
         """Show player score and computer score."""
@@ -223,7 +221,8 @@ class Shell(cmd.Cmd):
         print("in ascending order of rounds played.", end="")
         print("(The high score is determined by the fewest rounds played).")
 
-        print("If you don't see your game here, you cheated or haven't played yet")
+        print("If you don't see your game here, ", end="")
+        print("you cheated or haven't played yet")
 
         scores = self.game.read_from_file("json_file.json")
         if scores is None:
@@ -290,61 +289,70 @@ class Shell(cmd.Cmd):
             choice = self.game.computer.return_decision_of_computer()
             if choice == "roll":
                 computer_round += 1
-                computer_dice_value = self.game.computer.return_computer_rolled_dice_value()
-                print(f"{self.game.computer.name} rolled and got a {computer_dice_value}")
-                if computer_dice_value == 1:
+                c_d_v = self.game.computer.return_computer_rolled_dice_value()
+                print(f"{self.game.computer.name} rolled and got a {c_d_v}")
+                if c_d_v == 1:
                     self.game.computer.num_rounds += 1
-                    print(f"This means that {self.game.computer.name} gains 0 points in this round")
-                    print(f"{self.game.computer.name}'s score is {self.game.computer.score}")
+                    print("This means that  ", end="")
+                    print(f"{self.game.computer.name} ", end="")
+                    print("gains 0 points in this round")
+                    print(f"{self.game.computer.name}'s ", end="")
+                    print(f"score is {self.game.computer.score}")
                     self.game.computer.current_round_score = 0
                     print("\n")
                     break
 
-                self.game.computer.current_round_score += computer_dice_value
-                print(f"{self.game.computer.name}'s current"
-                f"round score is {self.game.computer.current_round_score}")
+                self.game.computer.current_round_score += c_d_v
+                print(f"{self.game.computer.name}'s current ", end="")
+                print("round score is ", end="")
+                print(f"{self.game.computer.current_round_score}")
 
-                if self.game.check_if_computer_wins(
-                    self.game.computer.current_round_score, self.game.computer.score):
+                if self.game.check_if_computer_wins(self.game.computer.current_round_score, self.game.computer.score):
                     print(f"{self.game.computer.name} decided to hold.")
                     print(f"{self.game.computer.name} will gain", end="")
                     print(f"{self.game.computer.current_round_score} points")
 
-                    print(f"{self.game.computer.name}'s score now is {self.game.computer.score}")
+                    print(f"{self.game.computer.name}'s ", end="")
+                    print(f"score now is {self.game.computer.score}")
                     print("Game is OVER")
-                    print(f"{self.game.computer.name} wins with a score"
-                           f"of {self.game.computer.score} points in"
-                    f"{self.game.computer.num_rounds}"
-                      f"rounds at {self.game.computer.difficulty}"
-                        f"difficulty")
+                    print(f"{self.game.computer.name} wins ", end="")
+                    print("with a score ", end="")
+                    print(f"of {self.game.computer.score} points in", end="")
+                    print(f"{self.game.computer.num_rounds}", end="")
+                    print(f"rounds at {self.game.computer.difficulty}", end="")
+                    print("difficulty")
                     break
 
             if choice == "hold" and computer_round == 0:
                 computer_round += 1
-                computer_dice_value = self.game.computer.return_computer_rolled_dice_value()
-                print(f"{self.game.computer.name} rolled and got a {computer_dice_value}")
-                if computer_dice_value == 1:
-                    print(f"This means that {self.game.computer.name} gains 0 points in this round")
+                c_d_v = self.game.computer.return_computer_rolled_dice_value()
+                print(f"{self.game.computer.name} rolled and got a {c_d_v}")
+                if c_d_v == 1:
+                    print(f"This means that {self.game.computer.name} ", end="")
+                    print("gains 0 points in this round")
                     print(f"{self.game.computer.name}'s score is {self.game.computer.score}")
                     self.game.computer.current_round_score = 0
                     break
 
-                self.game.computer.current_round_score += computer_dice_value
-                print(f"{self.game.computer.name}'s current"
-                       f"round score is {self.game.computer.current_round_score}")
+                self.game.computer.current_round_score += c_d_v
+                print(f"{self.game.computer.name}'s current ", end="")
+                print("round score is ", end="")
+                print(f"{self.game.computer.current_round_score}")
 
-                if self.game.check_if_computer_wins(
-                    self.game.computer.current_round_score, self.game.computer.score):
-                    print(f"{self.game.computer.name} decided"
-                           f"to hold. {self.game.computer.name}"
-                           f"will gain {self.game.computer.current_round_score} points")
-                    print(f"{self.game.computer.name}'s"
-                           f"score now is {self.game.computer.score}")
+                if self.game.check_if_computer_wins(self.game.computer.current_round_score, self.game.computer.score):
+                    print(f"{self.game.computer.name} decided to hold.")
+                    print(f"{self.game.computer.name} will gain", end="")
+                    print(f"{self.game.computer.current_round_score} points")
+
+                    print(f"{self.game.computer.name}'s ", end="")
+                    print(f"score now is {self.game.computer.score}")
                     print("Game is OVER")
-                    print(f"{self.game.computer.name} wins with"
-                           f"a score of {self.game.computer.score} points"
-                          f"in {self.game.computer.num_rounds} rounds"
-                            f"at {self.game.computer.difficulty} difficulty")
+                    print(f"{self.game.computer.name} wins ", end="")
+                    print("with a score ", end="")
+                    print(f"of {self.game.computer.score} points in", end="")
+                    print(f"{self.game.computer.num_rounds}", end="")
+                    print(f"rounds at {self.game.computer.difficulty}", end="")
+                    print("difficulty")
                     break
 
             if choice == "hold":
@@ -353,6 +361,7 @@ class Shell(cmd.Cmd):
                 print(f"{self.game.computer.name} decided to hold.")
                 print(f"{self.game.computer.name} gains", end="")
                 print(f"{self.game.computer.current_round_score} points")
-                print(f"{self.game.computer.name}'s score now is {self.game.computer.score}")
+                print(f"{self.game.computer.name}'s score now ", end="")
+                print(f"is {self.game.computer.score}")
                 self.game.computer.current_round_score = 0
                 break
