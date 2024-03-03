@@ -86,6 +86,38 @@ After the installation is done you can check what version you got.
 
         $ dot -V
 
-.................................................................
-To generate documentation for the Pig Dice Game Project, you can
-implement 
+pydoc
+Use pydoc to generate documentation for the Dice class.
+You will get a quick and readable documentation generated from your source code.
+For example with Dice class
+
+        cd pig/dice
+        python -m pydoc dice
+
+You can also generate a html page for the documentation.
+
+        python -m pydoc -w dice
+
+Open the generated html documentation in your web browser.
+
+(make sure you are in the 'pig directory when running all these commands')
+
+pdoc
+Generate documentation as HTML. (This might not work for python version 3.12.0 or above. Make sure to have a lower version)
+
+        pdoc --html --output-dir doc/pdoc *.py
+
+or
+
+        make pdoc
+
+The doc/ directory is created and generates all this HTML documents.
+Open up the documentation in your web browser and review it.
+
+To generate UML diagrams you can just type
+
+        make pyreverse
+
+(make sure you are in the 'pig directory when running all these commands')
+It will generate UML docs in the doc/ directory
+
