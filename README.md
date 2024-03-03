@@ -67,6 +67,25 @@ to have a better visualization of the code coverage
 
 ## DOCUMENTATION
 
-Documentation is a helpful feature...
+Documentation is a helpful feature to help understand the code for other developers
+First of all install the 'dot' command  to help generate the UML diagrams from the source code
+For windows, you can do it through chocolatey in Poweshell as administrator:
+
+        choco install graphviz
+
+For mac OS, through the 'brew' package manager.
+
+        brew install graphviz
+
+Debian (and other Linux), through your package manager.
+
+        apt install graphviz
+
+After the installation is done you can check what version you got.
+
+
+        $ dot -V
+
+.................................................................
 To generate documentation for the Pig Dice Game Project, you can
-implement...
+implement 
