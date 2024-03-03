@@ -46,8 +46,10 @@ class Shell(cmd.Cmd):
 
     def do_start(self, _):
         """Start a brand new game."""
+        print("\n")
         self.game = Game()
         print("New game started")
+        print("\n")
 
     def do_name(self, arg):
         """Set a new name for the player."""
@@ -133,6 +135,7 @@ class Shell(cmd.Cmd):
         print(f"{x[0]} rolled a {x[3]}")
         if x[4]:
             print(f"{x[0]} will gain 0 points")
+            print("\n")
             self._do_computer_plays_now()
         else:
             print(f"Your current round score is {x[1]}")
@@ -250,13 +253,13 @@ class Shell(cmd.Cmd):
         else:
 
             scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
-
-            for player_stats in scores:
-
-                player_name = player_stats.get("player_name")
-                player_score = player_stats.get("score")
-                num_rounds = player_stats.get("num_rounds")
-                difficulty = player_stats.get("difficulty")
+            print("HIGH SCORE LIST\n")
+            for i in range(len(scores)):
+                print("NUMBER " + str(i + 1))
+                player_name = scores[i].get("player_name")
+                player_score = scores[i].get("score")
+                num_rounds = scores[i].get("num_rounds")
+                difficulty = scores[i].get("difficulty")
 
                 print(f"Player Name: {player_name}")
                 print(f"Score: {player_score}")
@@ -303,6 +306,7 @@ class Shell(cmd.Cmd):
 
     def _do_computer_plays_now(self):
         print(f"{self.game.computer.name} plays now")
+        print("")
         computer_round = 0
 
         while True:
