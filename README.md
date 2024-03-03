@@ -1,11 +1,25 @@
 # groupprojectG30 PIG DICE GAME
 Group Project of Group 30 (Bhavik Bhagwani, Ludvig Dahlberg, Jacobs Kasarachi)
 
-Welcome to the Pig Dice Game! You are the player and you play against the computer.
+Welcome to the Pig Dice Game Normal Variation! You are the player and you play against the computer.
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
-## SETTING VENV
+
+# STARTING OFF
+
+Make sure you have make installed in your machine to make it easy for you
+to run certain features such as for testing and generating documentation
+
+# SETTING VENV
+First of all you need to set the virtual environment
 You can set a virtual environment using 'make venv'.
+
+# CHECK VERSION AND INSTALL FEATURES
+
+After having make installed check your python version using 'make version'
+Make sure your python version is below 3.12.0 as 'make pdoc' will only work with versions below 3.12.0
+Run 'make installed' to see what is installed in your venv
+If its only ... then run 'make install' to install all features for this project
 
 # RULES
 
