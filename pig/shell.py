@@ -24,6 +24,26 @@ class Shell(cmd.Cmd):
 
         self.game = None
 
+    def do_rules(self, _):
+        """Display Rules Of Game."""
+        print("\n")
+        print("Lets play the Pig Dice Game Normal Variation 50 points")
+        print("")
+        print("You will play against the computer. You will roll the dice and the dice value")
+        print("gets added to your score.")
+        print("")
+        print("But be careful, if you get a one on the dice, you lose all the")
+        print("current points you accumulated")
+        print("")
+        print("To start, first start the game using 'start' then")
+        print("change your name typing 'name' followed by your name and then")
+        print("set the difficulty typing 'difficulty' followed")
+        print("by the difficulty (easy, medium, hard)")
+        print("OR type 'default' to start quick and play with default settings")
+        print("")
+        print("Play at your own risk. Good Luck!")
+        print("\n")
+
     def do_start(self, _):
         """Start a brand new game."""
         self.game = Game()
