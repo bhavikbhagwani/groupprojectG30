@@ -42,7 +42,7 @@ To run the game, one should go to the 'pig' directory and run
 
                     python main.py
 
-## HELP IN GAME AND HOW TO PLAY AND OTHER COMMANDS
+## HELP IN GAME, HOW TO PLAY AND OTHER COMMANDS
 
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
 You can get the list of commands by typing '?' or 'help'
@@ -66,11 +66,21 @@ exit - exit or quits the game
 ## UNIT TESTING
 
 To effectively perform unit testing in the pig dice program you can
-implement 'make test' and 'make coverage' commands
+implement
+
+            make test 
+
+and
+
+            make coverage
+
+
 'make test' will run the linters and provide a rating for the overall code
 'make test' will also run 'make coverage' which you can do separately
+
 'make coverage' will inform you about the test coverage throughout the code
-proving percentages. A html file will also be created which you can open with your browser
+proving percentages. 
+A html file will also be created which you can open with your browser
 to have a better visualization of the code coverage
 
 ## DOCUMENTATION
@@ -111,15 +121,12 @@ Open the generated html documentation in your web browser.
 (make sure you are in the 'pig directory when running all these commands')
 
 pdoc
-Generate documentation as HTML. (This might not work for python version 3.12.0 or above. Make sure to have a lower version)
-
-        pdoc --html --output-dir doc/pdoc *.py
-
-or
+Generate documentation as HTML. (This might not work for python 
+version 3.12.0 or above. Make sure to have a lower version e.g. 3.11.5)
 
         make pdoc
 
-The doc/ directory is created and generates all this HTML documents.
+The doc/ directory is created and generates all the HTML documents.
 Open up the documentation in your web browser and review it.
 
 To generate UML diagrams you can just type
