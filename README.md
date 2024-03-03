@@ -1,5 +1,5 @@
-# groupprojectG30 PIG DICE GAME
-Group Project of Group 30 (Bhavik Bhagwani, Ludvig Dahlberg, Jacobs Kasarachi)
+#  PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
+PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
 
 Welcome to the Pig Dice Game Normal Variation! You are the player and you play against the computer.
 You both have the objective to roll the dice and accumulate points to 
@@ -11,6 +11,7 @@ Make sure you have make installed in your machine to make it easy for you
 to run certain features such as for testing and generating documentation
 
 # SETTING VENV
+
 First of all you need to set the virtual environment
 You can set a virtual environment using 'make venv'.
 
@@ -34,16 +35,19 @@ You can also cheat in the game, but your results or stats won't be stored if you
 python3
 
 # INSTALLATION
+
 We set our GitHub Repository to private, meaning nobody is able to clone it.
 However, you will have a zip file containing all files. 
 Download this zip file, extract the files and open them
 
-## RUN GAME
+# RUN GAME
+
 To run the game, one should go to the 'pig' directory and run
 
                     python main.py
 
 # HELP IN GAME
+
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
 You can get the list of commands by typing '?' or 'help'
 
@@ -56,6 +60,7 @@ After this you can roll, hold or cheat. If you cheat, your results and stats won
 A useful command is 'show' to show the results of you and the computer in the current game
 
 # UNIT TESTING
+
 To effectively perform unit testing in the pig dice program you can
 implement 'make test' and 'make coverage' commands
 'make test' will run the linters and provide a rating for the overall code
@@ -63,3 +68,9 @@ implement 'make test' and 'make coverage' commands
 'make coverage' will inform you about the test coverage throughout the code
 proving percentages. A html file will also be created which you can open with your browser
 to have a better visualization of the code coverage
+
+# DOCUMENTATION
+
+Documentation is a helpful feature...
+To generate documentation for the Pig Dice Game Project, you can
+implement...
