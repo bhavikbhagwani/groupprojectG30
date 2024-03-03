@@ -56,18 +56,25 @@ class Shell(cmd.Cmd):
     def do_name(self, arg):
         """Set a new name for the player."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
             print("You can also type 'default' to start the game faster")
+            print("\n")
             return
         if self.game.game_finished:
+            print("\n")
             print("Game is OVER. To start a new game type 'start'")
+            print("\n")
             return
         if not arg:
+            print("\n")
             print("Name was not provided. Type 'name'"
                   "and your name afterwards please (e.g. name Larsson)")
+            print("\n")
             return
-
+        
+        print("\n")
         name = arg.strip()
         scores = self.game.read_from_file("json_file.json")
         for player_stats in scores:
@@ -85,50 +92,70 @@ class Shell(cmd.Cmd):
     def do_difficulty(self, arg):
         """Set a difficulty for the game."""
         if self.game.game_finished:
+            print("\n")
             print("Game is OVER. To start a new game type 'start'")
+            print("\n")
             return
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
         if self.game.player_1.name is None:
+            print("\n")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
+            print("\n")
             return
         if not arg:
+            print("\n")
             print("Difficulty was not provided. ", end="")
             print("Type 'difficulty' and the difficulty ", end="")
             print("afterwards please (easy, medium, hard)")
-
+            print("\n")
             return
 
         difficulty = arg.strip()
         if difficulty not in ("easy", "medium", "hard"):
+            print("\n")
             print(f"{arg} is not a valid difficulty level", end="")
             print("Provide either easy, medium or hard")
+            print("\n")
             return
-
+        
+        print("\n")
         self.game.computer.set_computer_difficulty(difficulty)
         print(f"Difficulty changed to {difficulty}")
+        print("\n")
         print("You can now start to roll or hold or even cheat!")
+        print("\n")
 
     def do_roll(self, _):
         """Player rolls the dice."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
         if self.game.player_1.name is None:
+            print("\n")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
+            print("\n")
             return
         if self.game.computer.difficulty is None:
+            print("\n")
             print("Difficulty is not yet set. ", end="")
             print("Type 'difficulty' and the difficulty", end="")
             print("afterwards please (easy, medium, hard).")
+            print("\n")
             return
         if self.game.game_finished:
+            print("\n")
             print("Game is OVER. To start a new game type 'start'")
+            print("\n")
             return
 
         dice_value = self.game.player_1.roll()
@@ -146,23 +173,32 @@ class Shell(cmd.Cmd):
     def do_hold(self, _):
         """Player holds."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
         if self.game.player_1.name is None:
+            print("\n")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
+            print("\n")
             return
         if self.game.computer.difficulty is None:
+            print("\n")
             print("Difficulty is not yet set. ", end="")
             print("Type 'difficulty' and the difficulty", end="")
             print("afterwards please (easy, medium, hard).")
+            print("\n")
             return
         if self.game.game_finished:
+            print("\n")
             print("Game is OVER. To start a new game type 'start'")
+            print("\n")
             return
 
         x = self.game.player_holds()
+        print("\n")
         print(f"{x[0]} decided to hold.")
         print(f"Your score now is {x[1]}")
         print("\n")
@@ -172,37 +208,51 @@ class Shell(cmd.Cmd):
         else:
             y = self.game.get_player_info()
             print("Game is OVER")
-            print(f"{y[0]} wins with a score of", end="")
-            print(f"{y[1]} points in {y[2]}", end="")
+            print(f"{y[0]} wins with a score of ", end="")
+            print(f"{y[1]} points in {y[2]} ", end="")
             print(f"rounds at {y[3]} difficulty")
+            print("\n")
 
             if not self.game.cheats_used:
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
+                print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
+                print("\n")
 
     def do_exit(self, _):
         """Exit the game."""
+        print("\n")
         print("Thanks for playing! Goodbye!")
+        print("\n")
         return True
 
     def do_cheat(self, _):
         """Cheat in game to reach the game faster."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
         if self.game.player_1.name is None:
+            print("\n")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
+            print("\n")
             return
         if self.game.computer.difficulty is None:
+            print("\n")
             print("Difficulty is not yet set. ", end="")
             print("Type 'difficulty' and the difficulty", end="")
             print("afterwards please (easy, medium, hard).")
+            print("\n")
             return
         if self.game.game_finished:
+            print("\n")
             print("Game is OVER. To start a new game type 'start'")
+            print("\n")
             return
 
+        print("\n")
         print("You decided to cheat. You will get 30 free points")
         z = self.game.player_cheats()
 
@@ -212,10 +262,12 @@ class Shell(cmd.Cmd):
             self._do_computer_plays_now()
         else:
             y = self.game.get_player_info()
+            print("\n")
             print("Game is OVER")
             print(f"{y[0]} wins with a score of", end="")
             print(f"{y[1]} points in {y[2]}", end="")
             print(f"rounds at {y[3]} difficulty")
+            print("\n")
 
             if not self.game.cheats_used:
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
@@ -223,26 +275,35 @@ class Shell(cmd.Cmd):
     def do_show(self, _):
         """Show player score and computer score."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
         if self.game.player_1.name is None:
+            print("\n")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
+            print("\n")
             return
-
+        
         name_scores = self.game.get_scores()
+        print("\n")
         print(f"Score of {name_scores[0]}: ({name_scores[1]})")
         print(f"Score of {name_scores[2]}: ({name_scores[3]})")
+        print("\n")
 
     def do_scores(self, _):
         """Read the scores from the file."""
         if self.game is None:
+            print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("\n")
             return
-
-        print("Player statistics will be displayed", end="")
+        
+        print("\n")
+        print("Player statistics will be displayed ", end="")
         print("in ascending order of rounds played.", end="")
         print("(The high score is determined by the fewest rounds played).")
 
@@ -250,14 +311,16 @@ class Shell(cmd.Cmd):
         print("you cheated or haven't played yet")
 
         scores = self.game.read_from_file("json_file.json")
-        if scores is None:
+        if len(scores) == 0:
             print("No games found yet")
+            print("\n")
         else:
 
             scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
             print("HIGH SCORE LIST\n")
             for i in range(len(scores)):
                 print("NUMBER " + str(i + 1))
+                print("")
                 player_name = scores[i].get("player_name")
                 player_score = scores[i].get("score")
                 num_rounds = scores[i].get("num_rounds")
@@ -278,7 +341,7 @@ class Shell(cmd.Cmd):
         while n in list_of_num:
             n = random.randint(1, 100)
         list_of_num.append(n)
-        self.do_name("player" + str(n))
+        self.do_name("player" + "_" + str(n))
         self.do_difficulty("medium")
         print("\n")
 
@@ -332,6 +395,7 @@ class Shell(cmd.Cmd):
                 print(f"{self.game.computer.name}'s current ", end="")
                 print("round score is ", end="")
                 print(f"{self.game.computer.current_round_score}")
+                print("\n")
 
                 if self.game.check_if_computer_wins(self.game.computer.current_round_score, self.game.computer.score):
                     print(f"{self.game.computer.name} decided to hold.")
@@ -379,15 +443,18 @@ class Shell(cmd.Cmd):
                     print(f"{self.game.computer.num_rounds}", end="")
                     print(f"rounds at {self.game.computer.difficulty}", end="")
                     print("difficulty")
+                    print("\n")
                     break
 
             if choice == "hold":
                 self.game.computer.num_rounds += 1
                 self.game.computer.score += self.game.computer.current_round_score
                 print(f"{self.game.computer.name} decided to hold.")
-                print(f"{self.game.computer.name} gains", end="")
+                print(f"{self.game.computer.name} gains ", end="")
                 print(f"{self.game.computer.current_round_score} points")
+                print("\n")
                 print(f"{self.game.computer.name}'s score now ", end="")
                 print(f"is {self.game.computer.score}")
+                print("\n")
                 self.game.computer.current_round_score = 0
                 break
