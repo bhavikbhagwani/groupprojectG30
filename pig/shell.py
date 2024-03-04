@@ -496,6 +496,7 @@ class Shell(cmd.Cmd):
             print("You can do this by typing 'start'")
             print("\n")
             return
+        print("\n")
         histogram_data = self.game.read_histogram("histogram.json")
 
         if len(histogram_data) == 0:
@@ -511,7 +512,6 @@ class Shell(cmd.Cmd):
                     print("Histogram frequency ", end="")
                     print(f"for {playerName}")
 
-                    print("HISTOGRAM FREQUENCY:")
                     for dice_value, frequency in histogramMap.items():
                         print(f"{dice_value}: {'*' * frequency}")
 
