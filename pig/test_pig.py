@@ -244,7 +244,11 @@ class TestGameClass(unittest.TestCase):
     def test_reading_scores_from_file(self):
         """Test Readinng From File."""
         game_test = game.Game()
-        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix=".json") as temp_file:
+        with tempfile.NamedTemporaryFile(
+            mode='w',
+            delete=False,
+            suffix=".json"
+        ) as temp_file:
             temp_filename = temp_file.name
             game_data = {
                 "player_name": "player_name",
@@ -272,7 +276,11 @@ class TestGameClass(unittest.TestCase):
     def test_reading_histogram_from_file(self):
         """Test Reading Histogram."""
         game_test = game.Game()
-        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix=".json") as temp_file:
+        with tempfile.NamedTemporaryFile(
+            mode='w',
+            delete=False,
+            suffix=".json"
+        ) as temp_file:
             temp_filename = temp_file.name
             game_data = {
                 "player_name": "tattu",

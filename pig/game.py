@@ -130,5 +130,5 @@ class Game:
                 histogram_data = json.load(file)
         except FileNotFoundError:
             histogram_data = []
-        
+
         return histogram_data

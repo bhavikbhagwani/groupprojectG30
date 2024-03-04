@@ -217,13 +217,20 @@ class Shell(cmd.Cmd):
             print(f"{y[1]} points in {y[2]} ", end="")
             print(f"rounds at {y[3]} difficulty")
             print("\n")
-            
 
             if not self.game.cheats_used:
                 self._do_write_histogram()
-                print("PLAYER HISTOGRAM FREQUENCY STORED. TYPE 'histogram' TO SEE")
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
-                print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
+                print("PLAYER HISTOGRAM FREQUENCY STORED. ", end="")
+                print("TYPE 'histogram' TO SEE.")
+                self._do_write_into_file(
+                    self.game.player_1.name,
+                    self.game.player_1.score,
+                    self.game.player_1.num_rounds,
+                    self.game.computer.difficulty,
+                    "json_file.json"
+                )
+                print("PLAYER STATS STORED IN HIGH SCORE LIST. ", end="")
+                print("TYPE 'scores' TO SEE.")
                 print("\n")
 
     def do_exit(self, _):
@@ -279,12 +286,19 @@ class Shell(cmd.Cmd):
             print(f"rounds at {y[3]} difficulty")
             print("\n")
 
-
             if not self.game.cheats_used:
                 self._do_write_histogram()
-                print("PLAYER HISTOGRAM FREQUENCY STORED. TYPE 'histogram' TO SEE")
-                self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
-                print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
+                print("PLAYER HISTOGRAM FREQUENCY STORED. ", end="")
+                print("TYPE 'histogram' TO SEE.")
+                self._do_write_into_file(
+                    self.game.player_1.name,
+                    self.game.player_1.score,
+                    self.game.player_1.num_rounds,
+                    self.game.computer.difficulty,
+                    "json_file.json"
+                )
+                print("PLAYER STATS STORED IN HIGH SCORE LIST. ", end="")
+                print("TYPE 'scores' TO SEE.")
                 print("\n")
 
     def do_show(self, _):
@@ -331,7 +345,10 @@ class Shell(cmd.Cmd):
             print("\n")
         else:
 
-            scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
+            scores = sorted(
+                scores,
+                key=lambda x: x.get("num_rounds", float("inf"))
+            )
             print("HIGH SCORE LIST\n")
 
             for i, scores in enumerate(scores, start=1):
@@ -388,8 +405,14 @@ class Shell(cmd.Cmd):
     def _do_write_histogram(self):
         """Write dice frequency of this player."""
         histogram_array = self.game.player_1.frequency
-        histogram_map = {str(i+1): freq for i, freq in enumerate(histogram_array)}
-        histogram_data = {"player_name": self.game.player_1.name, "hist": histogram_map}
+        histogram_map = {
+            str(i+1): freq for i,
+            freq in enumerate(histogram_array)
+            }
+        histogram_data = {
+            "player_name": self.game.player_1.name,
+            "hist": histogram_map
+            }
 
         try:
             with open("histogram.json", "r", encoding="utf-8") as file:
@@ -399,7 +422,11 @@ class Shell(cmd.Cmd):
 
         existing_data.append(histogram_data)
 
-        with open("histogram.json", "w", encoding="utf-8") as histogram_json_file:
+        with open(
+            "histogram.json",
+            "w",
+            encoding="utf-8"
+        ) as histogram_json_file:
             json.dump(existing_data, histogram_json_file, indent=2)
 
     def _do_computer_plays_now(self):
@@ -430,19 +457,23 @@ class Shell(cmd.Cmd):
                 print(f"{self.game.computer.current_round_score}")
                 print("\n")
 
-                if self.game.check_if_computer_wins(self.game.computer.current_round_score, self.game.computer.score):
+                if self.game.check_if_computer_wins(
+                    self.game.computer.current_round_score,
+                    self.game.computer.score
+                ):
                     print(f"{self.game.computer.name} decided to hold.")
                     print(f"{self.game.computer.name} will gain", end="")
                     print(f"{self.game.computer.current_round_score} points")
 
-                    print(f"{self.game.computer.name}'s ", end="")
+                    print(f"{self.  game.computer.name}'s ", end="")
                     print(f"score now is {self.game.computer.score}")
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins ", end="")
                     print("with a score ", end="")
                     print(f"of {self.game.computer.score} points in ", end="")
                     print(f"{self.game.computer.num_rounds} ", end="")
-                    print(f"rounds at {self.game.computer.difficulty} ", end="")
+                    print("rounds at ", end="")
+                    print(f"{self.game.computer.difficulty} ")
                     print("difficulty")
                     print("\n")
                     break
@@ -452,9 +483,11 @@ class Shell(cmd.Cmd):
                 c_d_v = self.game.computer.return_computer_rolled_dice_value()
                 print(f"{self.game.computer.name} rolled and got a {c_d_v}")
                 if c_d_v == 1:
-                    print(f"This means that {self.game.computer.name} ", end="")
+                    print("This means that  ", end="")
+                    print(f"{self.game.computer.name} ", end="")
                     print("gains 0 points in this round")
-                    print(f"{self.game.computer.name}'s score is {self.game.computer.score}")
+                    print(f"{self.game.computer.name}'s score ", end="")
+                    print(f"is {self.game.computer.score}")
                     self.game.computer.current_round_score = 0
                     break
 
@@ -463,7 +496,10 @@ class Shell(cmd.Cmd):
                 print("round score is ", end="")
                 print(f"{self.game.computer.current_round_score}")
 
-                if self.game.check_if_computer_wins(self.game.computer.current_round_score, self.game.computer.score):
+                if self.game.check_if_computer_wins(
+                    self.game.computer.current_round_score,
+                    self.game.computer.score
+                ):
                     print(f"{self.game.computer.name} decided to hold.")
                     print(f"{self.game.computer.name} will gain", end="")
                     print(f"{self.game.computer.current_round_score} points")
@@ -475,14 +511,17 @@ class Shell(cmd.Cmd):
                     print("with a score ", end="")
                     print(f"of {self.game.computer.score} points in ", end="")
                     print(f"{self.game.computer.num_rounds} ", end="")
-                    print(f"rounds at {self.game.computer.difficulty} ", end="")
+                    print("rounds at ", end="")
+                    print(f"{self.game.computer.difficulty} ")
                     print("difficulty")
                     print("\n")
                     break
 
             if choice == "hold":
                 self.game.computer.num_rounds += 1
-                self.game.computer.score += self.game.computer.current_round_score
+                self.game.computer.score += (
+                    self.game.computer.current_round_score
+                )
                 print(f"{self.game.computer.name} decided to hold.")
                 print(f"{self.game.computer.name} gains ", end="")
                 print(f"{self.game.computer.current_round_score} points")
