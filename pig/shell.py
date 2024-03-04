@@ -88,6 +88,7 @@ class Shell(cmd.Cmd):
 
         self.game.set_player_names(name)
         print(f"Name changed to {name}")
+        print("\n")
 
     def do_difficulty(self, arg):
         """Set a difficulty for the game."""
@@ -104,6 +105,7 @@ class Shell(cmd.Cmd):
             return
         if self.game.player_1.name is None:
             print("\n")
+            print("Name not set yet")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
             print("\n")
@@ -141,6 +143,7 @@ class Shell(cmd.Cmd):
             return
         if self.game.player_1.name is None:
             print("\n")
+            print("Name not set yet")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
             print("\n")
@@ -148,7 +151,7 @@ class Shell(cmd.Cmd):
         if self.game.computer.difficulty is None:
             print("\n")
             print("Difficulty is not yet set. ", end="")
-            print("Type 'difficulty' and the difficulty", end="")
+            print("Type 'difficulty' and the difficulty ", end="")
             print("afterwards please (easy, medium, hard).")
             print("\n")
             return
@@ -180,6 +183,7 @@ class Shell(cmd.Cmd):
             return
         if self.game.player_1.name is None:
             print("\n")
+            print("Name not set yet")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
             print("\n")
@@ -208,10 +212,12 @@ class Shell(cmd.Cmd):
         else:
             y = self.game.get_player_info()
             print("Game is OVER")
+            print("\n")
             print(f"{y[0]} wins with a score of ", end="")
             print(f"{y[1]} points in {y[2]} ", end="")
             print(f"rounds at {y[3]} difficulty")
             print("\n")
+            self._do_write_histogram()
 
             if not self.game.cheats_used:
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
@@ -235,6 +241,7 @@ class Shell(cmd.Cmd):
             return
         if self.game.player_1.name is None:
             print("\n")
+            print("Name not set yet")
             print("Type 'name' and your name afterwards please. ", end="")
             print("(e.g. name Patrick).")
             print("\n")
@@ -264,13 +271,17 @@ class Shell(cmd.Cmd):
             y = self.game.get_player_info()
             print("\n")
             print("Game is OVER")
+            print("\n")
             print(f"{y[0]} wins with a score of", end="")
             print(f"{y[1]} points in {y[2]}", end="")
             print(f"rounds at {y[3]} difficulty")
             print("\n")
+            self._do_write_histogram()
 
             if not self.game.cheats_used:
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
+                print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
+                print("\n")
 
     def do_show(self, _):
         """Show player score and computer score."""
@@ -369,6 +380,23 @@ class Shell(cmd.Cmd):
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(existing_data, file, indent=4)
 
+    def _do_write_histogram(self):
+        """Write dice frequency of this player."""
+        histogram_array = self.game.player_1.frequency
+        histogram_map = {str(i+1): freq for i, freq in enumerate(histogram_array)}
+        histogram_data = {"player_name": self.game.player_1.name, "hist": histogram_map}
+
+        try:
+            with open("histogram.json", "r", encoding="utf-8") as file:
+                existing_data = json.load(file)
+        except FileNotFoundError:
+            existing_data = []
+
+        existing_data.append(histogram_data)
+
+        with open("histogram.json", "w", encoding="utf-8") as histogram_json_file:
+            json.dump(existing_data, histogram_json_file, indent=2)
+
     def _do_computer_plays_now(self):
         print(f"{self.game.computer.name} plays now")
         print("")
@@ -407,10 +435,11 @@ class Shell(cmd.Cmd):
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins ", end="")
                     print("with a score ", end="")
-                    print(f"of {self.game.computer.score} points in", end="")
-                    print(f"{self.game.computer.num_rounds}", end="")
-                    print(f"rounds at {self.game.computer.difficulty}", end="")
+                    print(f"of {self.game.computer.score} points in ", end="")
+                    print(f"{self.game.computer.num_rounds} ", end="")
+                    print(f"rounds at {self.game.computer.difficulty} ", end="")
                     print("difficulty")
+                    print("\n")
                     break
 
             if choice == "hold" and computer_round == 0:
@@ -439,9 +468,9 @@ class Shell(cmd.Cmd):
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins ", end="")
                     print("with a score ", end="")
-                    print(f"of {self.game.computer.score} points in", end="")
-                    print(f"{self.game.computer.num_rounds}", end="")
-                    print(f"rounds at {self.game.computer.difficulty}", end="")
+                    print(f"of {self.game.computer.score} points in ", end="")
+                    print(f"{self.game.computer.num_rounds} ", end="")
+                    print(f"rounds at {self.game.computer.difficulty} ", end="")
                     print("difficulty")
                     print("\n")
                     break
@@ -458,3 +487,37 @@ class Shell(cmd.Cmd):
                 print("\n")
                 self.game.computer.current_round_score = 0
                 break
+
+    def do_histogram(self, _):
+        """Show Histogram For Players"""
+        if self.game is None:
+            print("\n")
+            print("Please start a new game first. ", end="")
+            print("You can do this by typing 'start'")
+            print("\n")
+            return
+        histogram_data = self.game.read_histogram("histogram.json")
+
+        if len(histogram_data) == 0:
+            print("\n")
+            print("No games found yet")
+            print("\n")
+        else:
+
+            for entry in histogram_data:
+
+                    playerName = entry["player_name"]
+                    histogramMap = entry["hist"]
+                    print("Histogram frequency ", end="")
+                    print(f"for {playerName}")
+
+                    print("HISTOGRAM FREQUENCY:")
+                    for dice_value, frequency in histogramMap.items():
+                        print(f"{dice_value}: {'*' * frequency}")
+
+                    print("\n" + "=" * 30 + "\n")
+        
+
+
+
+        
