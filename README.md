@@ -5,22 +5,60 @@ Welcome to the Pig Dice Game Normal Variation! You are the player and you play a
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
 
-## STARTING OFF
+## INSTALLATION OF PROJECT
+
+We set our GitHub Repository to private, meaning nobody is able to clone it without SSH keys.
+However, you will have a zip file containing all files. 
+Download this zip file, extract the files and open them
+
+## PYTHON
+
+Check that you have the latest version of Python 3 installed
+
+## MAKE AND MAKEFILE
 
 Make sure you have 'make' installed in your machine to make it easy for you
-to run certain features such as for testing and generating documentation
+to compile, build and certain features such as for testing and generating documentation
+If not installed see video on how to install:
+
+https://www.youtube.com/watch?v=5TavcolACQY&list=PLEtyhUSKTK3hOCnMrPKGOu3_VjUAkhsgG&index=3
+
+by Mikael Roos
+
+The Makefile contains a target to execute or run several commands. This will make it easy
+to compile, build, test and generate documentation
 
 ## SETTING VENV
 
-First of all you need to set the virtual environment
-You can set a virtual environment using 'make venv'.
+Once having 'make' installed, first of all you need to set the virtual environment and activate it
+You can set a virtual environment using 
 
-## CHECK VERSION AND INSTALL FEATURES
+            make venv
 
-After having make installed check your python version using 'make version'
-Make sure your python version is below 3.12.0 as 'make pdoc' will only work with versions below 3.12.0
-Run 'make installed' to see what is installed in your venv
-If its only ... then run 'make install' to install all features for this project
+You can activate the virtual environment using
+
+            . .venv/Scripts/activate
+
+You should see a (.venv) in your terminal
+This will allow all features to be found and run
+You can deactivate the virtual environment by using
+
+            deactivate
+
+## WHAT NEXT   
+
+After having make installed and your venv set up, check your python version using 'make version'
+Make sure your python version is below 3.12.0 as 'make pdoc' will only work with versions 
+below 3.12.0 due to an error encountered where "No module named 'distutils'" occured.
+You can do all other things apart from make pdoc if you have version 3.12.0 or above.
+
+Noe, install all needed packages from the file requirements.txt using
+
+        make install
+
+You can now check what packages that are installed using
+
+        make installed
 
 ## RULES OF GAME
 
@@ -29,12 +67,6 @@ If either rolls a 1, they lose their current round's points, and it's the next o
 Either can choose to hold, adding their current round's points to their total score.
 The first player to reach a score 50 points wins the game.
 You can also cheat in the game, but your results or stats won't be stored if you cheat
-
-## INSTALLATION
-
-We set our GitHub Repository to private, meaning nobody is able to clone it.
-However, you will have a zip file containing all files. 
-Download this zip file, extract the files and open them
 
 ## RUN GAME
 
@@ -45,13 +77,16 @@ To run the game, one should go to the 'pig' directory and run
 ## HELP IN GAME, HOW TO PLAY AND OTHER COMMANDS
 
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
-You can get the list of commands by typing '?' or 'help'
+You can get the list of commands just by typing '?' or 'help'
 
 To start/restart the game you shall type 'start'.
+
 After this you should fill you name in and set the difficulty
 This difficulty manages the intelligence of the computer
+
 You can start/restart, change name and set difficulty anytime you want
-The previous 2 steps can be done faster by typint 'default' (play with default settings)
+
+The previous 2 steps can be done faster by typing 'default' (play with default settings)
 
 After this you can roll, hold or cheat using 'roll', 'hold', or 'cheat'
 If you cheat, your results and stats won't be stored/recorded. 
@@ -80,9 +115,10 @@ and
 'make test' will also run 'make coverage' which you can do separately
 
 'make coverage' will inform you about the test coverage throughout the code
-proving percentages. 
-A html file will also be created which you can open with your browser
-to have a better visualization of the code coverage
+providing percentages of how much code was covered using unit tests.
+
+After running 'make test' or 'make coverage', a html file will be
+created which you can open with your browser to have a better visualization of the code coverage
 
 ## DOCUMENTATION
 
@@ -102,38 +138,47 @@ Debian (and other Linux), through your package manager.
 
 After the installation is done you can check what version you got.
 
-
         $ dot -V
 
 pydoc
-Use pydoc to generate documentation for the Dice class.
+Use pydoc to generate documentation for any class.
 You will get a quick and readable documentation generated from your source code.
 For example with Dice class
 
         cd pig/dice
         python -m pydoc dice
 
-You can also generate a html page for the documentation.
+You can also generate a html page for the documentation for any class
 
         python -m pydoc -w dice
 
+This will HTML documents inside doc/pydoc
 Open the generated html documentation in your web browser.
 
 (make sure you are in the 'pig directory when running all these commands')
-
-pdoc
-Generate documentation as HTML. (This might not work for python 
-version 3.12.0 or above. Make sure to have a lower version e.g. 3.11.5)
-
-        make pdoc
-
-The doc/ directory is created and generates all the HTML documents.
-Open up the documentation in your web browser and review it.
 
 To generate UML diagrams you can just type
 
         make pyreverse
 
 (make sure you are in the 'pig directory when running all these commands')
-It will generate UML docs in the doc/ directory
+This will generate UML diagrams inside doc/pyreverse
+
+To run both pydoc for all classes/files in directory and pyreverse for UML diagram, 
+there is a target for both these things in the Makefile by typing
+
+        make pdoc
+
+This will create a doc/ folder in the 'pig' directory with with folders:
+
+    pydoc
+    pyreverse
+
+The pydoc folder will have HTML documentation for all classes found and
+the pyreverse folder will have UML diagrams for all classes found
+
+## CONCLUSIONS
+
+We hope you enjoy your adventure in our project and game.
+
 
