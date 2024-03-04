@@ -90,6 +90,25 @@ class TestPlayerClass(unittest.TestCase):
         res = player_test.roll()
         exp = 1 <= res <= 6
         self.assertTrue(exp)
+    
+    
+    def test_roll_of_player_frequency(self):
+        """Testing increase of frequency when dice rolled."""
+        player_test = player.Player()
+        freq_list = player_test.frequency
+        dice_value = player_test.roll()
+        if dice_value == 1:
+            self.assertEqual(freq_list[0], 1)
+        elif dice_value == 2:
+            self.assertEqual(freq_list[1], 1)
+        elif dice_value == 3:
+            self.assertEqual(freq_list[2], 1)
+        elif dice_value == 4:
+            self.assertEqual(freq_list[3], 1)
+        elif dice_value == 5:
+            self.assertEqual(freq_list[4], 1)
+        elif dice_value == 6:
+            self.assertEqual(freq_list[5], 1)
 
 
 class TestGameClass(unittest.TestCase):
@@ -251,6 +270,13 @@ class TestGameClass(unittest.TestCase):
 
         scores = game_test.read_from_file("non-existing.json")
         self.assertEqual(len(scores), 0)
+    
+    def test_reading_histogram(self):
+        """Test Reading From Not Existing Histogram File"""
+        game_test = game.Game()
+
+        histogram_data = game_test.read_histogram("non-existing_2.json")
+        self.assertEqual(len(histogram_data), 0)
     
 
 
