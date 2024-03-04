@@ -34,5 +34,5 @@ class Player:
             self.frequency[4] += 1
         else:
             self.frequency[5] += 1
-        
+
         return dice_value

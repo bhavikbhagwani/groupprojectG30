@@ -277,12 +277,12 @@ class TestGameClass(unittest.TestCase):
             game_data = {
                 "player_name": "tattu",
                 "hist": {
-                "1": 2,
-                "2": 4,
-                "3": 1,
-                "4": 3,
-                "5": 3,
-                "6": 4
+                    "1": 2,
+                    "2": 4,
+                    "3": 1,
+                    "4": 3,
+                    "5": 3,
+                    "6": 4
                 }
             }
             json.dump([game_data], temp_file)
@@ -296,11 +296,12 @@ class TestGameClass(unittest.TestCase):
             os.remove(temp_filename)
 
     def test_reading_histogram(self):
-        """Test Reading From Not Existing Histogram File"""
+        """Test Reading From Not Existing Histogram File."""
         game_test = game.Game()
 
         histogram_data = game_test.read_histogram("non-existing_2.json")
         self.assertEqual(len(histogram_data), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

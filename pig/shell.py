@@ -73,7 +73,7 @@ class Shell(cmd.Cmd):
                   "and your name afterwards please (e.g. name Larsson)")
             print("\n")
             return
-        
+
         print("\n")
         name = arg.strip()
         scores = self.game.read_from_file("json_file.json")
@@ -125,7 +125,7 @@ class Shell(cmd.Cmd):
             print("Provide either easy, medium or hard")
             print("\n")
             return
-        
+
         print("\n")
         self.game.computer.set_computer_difficulty(difficulty)
         print(f"Difficulty changed to {difficulty}")
@@ -297,7 +297,7 @@ class Shell(cmd.Cmd):
             print("(e.g. name Patrick).")
             print("\n")
             return
-        
+
         name_scores = self.game.get_scores()
         print("\n")
         print(f"Score of {name_scores[0]}: ({name_scores[1]})")
@@ -312,7 +312,7 @@ class Shell(cmd.Cmd):
             print("You can do this by typing 'start'")
             print("\n")
             return
-        
+
         print("\n")
         print("Player statistics will be displayed ", end="")
         print("in ascending order of rounds played.", end="")
@@ -329,13 +329,14 @@ class Shell(cmd.Cmd):
 
             scores = sorted(scores, key=lambda x: x.get("num_rounds", float("inf")))
             print("HIGH SCORE LIST\n")
-            for i in range(len(scores)):
-                print("NUMBER " + str(i + 1))
+
+            for i, scores in enumerate(scores, start=1):
+                print("NUMBER " + str(i))
                 print("")
-                player_name = scores[i].get("player_name")
-                player_score = scores[i].get("score")
-                num_rounds = scores[i].get("num_rounds")
-                difficulty = scores[i].get("difficulty")
+                player_name = scores.get("player_name")
+                player_score = scores.get("score")
+                num_rounds = scores.get("num_rounds")
+                difficulty = scores.get("difficulty")
 
                 print(f"Player Name: {player_name}")
                 print(f"Score: {player_score}")
@@ -489,7 +490,7 @@ class Shell(cmd.Cmd):
                 break
 
     def do_histogram(self, _):
-        """Show Histogram For Players"""
+        """Show Histogram For Players."""
         if self.game is None:
             print("\n")
             print("Please start a new game first. ", end="")
@@ -507,17 +508,12 @@ class Shell(cmd.Cmd):
 
             for entry in histogram_data:
 
-                    playerName = entry["player_name"]
-                    histogramMap = entry["hist"]
-                    print("Histogram frequency ", end="")
-                    print(f"for {playerName}")
+                player_name = entry["player_name"]
+                histogram_map = entry["hist"]
+                print("Histogram frequency ", end="")
+                print(f"for {player_name}")
 
-                    for dice_value, frequency in histogramMap.items():
-                        print(f"{dice_value}: {'*' * frequency}")
+                for dice_value, frequency in histogram_map.items():
+                    print(f"{dice_value}: {'*' * frequency}")
 
-                    print("\n" + "=" * 30 + "\n")
-        
-
-
-
-        
+                print("\n" + "=" * 30 + "\n")
