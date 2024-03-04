@@ -349,7 +349,9 @@ class Shell(cmd.Cmd):
 
             scores = sorted(
                 scores,
-                key=lambda x: x.get("num_rounds", float("inf"))
+                key=lambda x: x.get(
+                    "num_rounds", float("inf")
+                )
             )
 
             scores = sorted(scores, key=lambda x: (
