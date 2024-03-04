@@ -217,9 +217,11 @@ class Shell(cmd.Cmd):
             print(f"{y[1]} points in {y[2]} ", end="")
             print(f"rounds at {y[3]} difficulty")
             print("\n")
-            self._do_write_histogram()
+            
 
             if not self.game.cheats_used:
+                self._do_write_histogram()
+                print("PLAYER HISTOGRAM FREQUENCY STORED. TYPE 'histogram' TO SEE")
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
                 print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
                 print("\n")
@@ -272,13 +274,15 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Game is OVER")
             print("\n")
-            print(f"{y[0]} wins with a score of", end="")
-            print(f"{y[1]} points in {y[2]}", end="")
+            print(f"{y[0]} wins with a score of ", end="")
+            print(f"{y[1]} points in {y[2]} ", end="")
             print(f"rounds at {y[3]} difficulty")
             print("\n")
-            self._do_write_histogram()
+
 
             if not self.game.cheats_used:
+                self._do_write_histogram()
+                print("PLAYER HISTOGRAM FREQUENCY STORED. TYPE 'histogram' TO SEE")
                 self._do_write_into_file(self.game.player_1.name, self.game.player_1.score, self.game.player_1.num_rounds, self.game.computer.difficulty, "json_file.json")
                 print("PLAYER STATS STORED IN HIGH SCORE LIST. TYPE 'scores' TO SEE.")
                 print("\n")
