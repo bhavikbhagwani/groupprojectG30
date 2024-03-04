@@ -22,5 +22,17 @@
         "score": 51,
         "num_rounds": 7,
         "difficulty": "easy"
+    },
+    {
+        "player_name": "tattu",
+        "score": 54,
+        "num_rounds": 8,
+        "difficulty": "easy"
+    },
+    {
+        "player_name": "pappu",
+        "score": 55,
+        "num_rounds": 6,
+        "difficulty": "easy"
     }
 ]
