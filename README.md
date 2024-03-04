@@ -59,8 +59,9 @@ A useful command is 'show' to show the results of you and the computer in the cu
 
 Other commands:
 rules - to see the rules and instructions of the game
-scores - to see the highscore list from the played games so far
+scores - to see the highscore list from the played games so far (non-cheated only)
 exit - exit or quits the game
+histogram - to see histogram  of dice values of players (non-cheated only)
 
 
 ## UNIT TESTING
