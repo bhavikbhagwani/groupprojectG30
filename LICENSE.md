@@ -1,4 +1,5 @@
-Copyright 2024 Bhavik Bhagwni, Ludvig Dahlberg, Jacobs Kasarachi, 
+Copyright 2024 Bhavik Bhagwni, Ludvig Dahlberg, Jacobs Kasarachi
+
 bhavik.bhagwani0001@stud.hkr.se
 ludvig.dahlberg0006@stud.hkr.se
 kasarachi.jacobs0060@stud.hkr.se
