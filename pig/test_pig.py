@@ -83,8 +83,9 @@ class TestPlayerClass(unittest.TestCase):
     """Test the Computer Class."""
 
     def test_roll_of_player(self):
-        """Set difficulty and test if either easy,medium or hard."""
+        """Testing roll of player."""
         player_test = player.Player()
+
 
         res = player_test.roll()
         exp = 1 <= res <= 6
@@ -250,6 +251,8 @@ class TestGameClass(unittest.TestCase):
 
         scores = game_test.read_from_file("non-existing.json")
         self.assertEqual(len(scores), 0)
+    
+
 
 
 if __name__ == "__main__":
