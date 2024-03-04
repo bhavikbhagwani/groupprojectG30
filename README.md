@@ -112,10 +112,17 @@ and
 
 
 'make test' will run the linters and provide a rating for the overall code
-'make test' will also run 'make coverage' which you can do separately
-
 'make coverage' will inform you about the test coverage throughout the code
 providing percentages of how much code was covered using unit tests.
+'make test' will also run 'make coverage' which you can do separately
+
+You can also just run linters using
+
+        make lint
+
+or separetaly using
+
+        make flake8         make pylint
 
 After running 'make test' or 'make coverage', a html file will be
 created which you can open with your browser to have a better visualization of the code coverage
