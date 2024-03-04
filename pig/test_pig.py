@@ -86,12 +86,10 @@ class TestPlayerClass(unittest.TestCase):
         """Testing roll of player."""
         player_test = player.Player()
 
-
         res = player_test.roll()
         exp = 1 <= res <= 6
         self.assertTrue(exp)
-    
-    
+
     def test_roll_of_player_frequency(self):
         """Testing increase of frequency when dice rolled."""
         player_test = player.Player()
@@ -270,16 +268,39 @@ class TestGameClass(unittest.TestCase):
 
         scores = game_test.read_from_file("non-existing.json")
         self.assertEqual(len(scores), 0)
-    
+
+    def test_reading_histogram_from_file(self):
+        """Test Reading Histogram."""
+        game_test = game.Game()
+        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix=".json") as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                "player_name": "tattu",
+                "hist": {
+                "1": 2,
+                "2": 4,
+                "3": 1,
+                "4": 3,
+                "5": 3,
+                "6": 4
+                }
+            }
+            json.dump([game_data], temp_file)
+
+        try:
+            histogram_data = game_test.read_histogram(temp_filename)
+
+            self.assertIsInstance(histogram_data, list)
+
+        finally:
+            os.remove(temp_filename)
+
     def test_reading_histogram(self):
         """Test Reading From Not Existing Histogram File"""
         game_test = game.Game()
 
         histogram_data = game_test.read_histogram("non-existing_2.json")
         self.assertEqual(len(histogram_data), 0)
-    
-
-
 
 if __name__ == "__main__":
     unittest.main()
