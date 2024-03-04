@@ -334,7 +334,9 @@ class Shell(cmd.Cmd):
         print("\n")
         print("Player statistics will be displayed ", end="")
         print("in ascending order of rounds played.", end="")
-        print("(The high score is determined by the fewest rounds played).")
+        print(" and difficulty (hard -> easy) ", end="")
+        print("(The high score is determined by the ", end="")
+        print("fewest rounds played and by difficulty)")
 
         print("If you don't see your game here, ", end="")
         print("you cheated or haven't played yet")
@@ -349,6 +351,8 @@ class Shell(cmd.Cmd):
                 scores,
                 key=lambda x: x.get("num_rounds", float("inf"))
             )
+
+            scores = sorted(scores, key=lambda x: (x.get("difficulty", float("inf")), x.get("num_rounds", float("inf"))))
             print("HIGH SCORE LIST\n")
 
             for i, scores in enumerate(scores, start=1):
