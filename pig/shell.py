@@ -164,7 +164,7 @@ class Shell(cmd.Cmd):
         dice_value = self.game.player_1.roll()
         x = self.game.player_rolls(dice_value)
         print("\n")
-        print(f"{x[0]} rolled a {x[3]}")
+        print(f"{x[0]} rolled a ({x[3]})")
         if x[4]:
             print(f"{x[0]} will gain 0 points")
             print("\n")
@@ -204,7 +204,7 @@ class Shell(cmd.Cmd):
         x = self.game.player_holds()
         print("\n")
         print(f"{x[0]} decided to hold.")
-        print(f"Your score now is {x[1]}")
+        print(f"Your score now is ({x[1]})")
         print("\n")
 
         if not self.game.check_if_player_wins(self.game.player_1.score):
@@ -448,14 +448,15 @@ class Shell(cmd.Cmd):
             if choice == "roll":
                 computer_round += 1
                 c_d_v = self.game.computer.return_computer_rolled_dice_value()
-                print(f"{self.game.computer.name} rolled and got a {c_d_v}")
+                print(f"{self.game.computer.name} rolled and got a ({c_d_v})")
+                print("\n")
                 if c_d_v == 1:
                     self.game.computer.num_rounds += 1
                     print("This means that  ", end="")
                     print(f"{self.game.computer.name} ", end="")
                     print("gains 0 points in this round")
                     print(f"{self.game.computer.name}'s ", end="")
-                    print(f"score is {self.game.computer.score}")
+                    print(f"score is ({self.game.computer.score})")
                     self.game.computer.current_round_score = 0
                     print("\n")
                     break
@@ -475,7 +476,7 @@ class Shell(cmd.Cmd):
                     print(f"{self.game.computer.current_round_score} points")
 
                     print(f"{self.  game.computer.name}'s ", end="")
-                    print(f"score now is {self.game.computer.score}")
+                    print(f"score now is ({self.game.computer.score})")
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins ", end="")
                     print("with a score ", end="")
@@ -490,13 +491,14 @@ class Shell(cmd.Cmd):
             if choice == "hold" and computer_round == 0:
                 computer_round += 1
                 c_d_v = self.game.computer.return_computer_rolled_dice_value()
-                print(f"{self.game.computer.name} rolled and got a {c_d_v}")
+                print(f"{self.game.computer.name} rolled and got a ({c_d_v})")
+                print("\n")
                 if c_d_v == 1:
                     print("This means that  ", end="")
                     print(f"{self.game.computer.name} ", end="")
                     print("gains 0 points in this round")
                     print(f"{self.game.computer.name}'s score ", end="")
-                    print(f"is {self.game.computer.score}")
+                    print(f"is ({self.game.computer.score})")
                     self.game.computer.current_round_score = 0
                     break
 
@@ -514,7 +516,7 @@ class Shell(cmd.Cmd):
                     print(f"{self.game.computer.current_round_score} points")
 
                     print(f"{self.game.computer.name}'s ", end="")
-                    print(f"score now is {self.game.computer.score}")
+                    print(f"score now is ({self.game.computer.score})")
                     print("Game is OVER")
                     print(f"{self.game.computer.name} wins ", end="")
                     print("with a score ", end="")
@@ -536,7 +538,7 @@ class Shell(cmd.Cmd):
                 print(f"{self.game.computer.current_round_score} points")
                 print("\n")
                 print(f"{self.game.computer.name}'s score now ", end="")
-                print(f"is {self.game.computer.score}")
+                print(f"is ({self.game.computer.score})")
                 print("\n")
                 self.game.computer.current_round_score = 0
                 break
