@@ -355,15 +355,12 @@ class Shell(cmd.Cmd):
 
             scores = sorted(
                 scores,
-                key=lambda x: x.get(
-                    "num_rounds", float("inf")
+                key=lambda x: (
+                    {"easy": 2, "medium": 1, "hard": 0}.get(x.get("difficulty", "hard")),
+                    x.get("num_rounds", float("inf"))
                 )
             )
 
-            scores = sorted(scores, key=lambda x: (
-                x.get("difficulty", float("inf")),
-                x.get("num_rounds", float("inf"))
-            ))
             print("HIGH SCORE LIST\n")
 
             for i, scores in enumerate(scores, start=1):
