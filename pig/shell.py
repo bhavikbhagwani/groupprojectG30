@@ -92,15 +92,16 @@ class Shell(cmd.Cmd):
 
     def do_difficulty(self, arg):
         """Set a difficulty for the game."""
-        if self.game.game_finished:
-            print("\n")
-            print("Game is OVER. To start a new game type 'start'")
-            print("\n")
-            return
         if self.game is None:
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
+            print("\n")
+            return
+        if self.game.game_finished:
+            print("\n")
+            print("Game is OVER. To start a new game type 'start'")
             print("\n")
             return
         if self.game.player_1.name is None:
@@ -139,6 +140,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
         if self.game.player_1.name is None:
@@ -179,6 +181,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
         if self.game.player_1.name is None:
@@ -246,6 +249,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
         if self.game.player_1.name is None:
@@ -307,6 +311,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
         if self.game.player_1.name is None:
@@ -328,6 +333,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
 
@@ -549,6 +555,7 @@ class Shell(cmd.Cmd):
             print("\n")
             print("Please start a new game first. ", end="")
             print("You can do this by typing 'start'")
+            print("You can also type 'default' to start the game faster")
             print("\n")
             return
         print("\n")
