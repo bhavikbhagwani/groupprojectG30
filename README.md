@@ -1,7 +1,7 @@
 #  PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
 PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
 
-Welcome to the Pig Dice Game Normal Variation! You are the player and you play against the computer.
+Welcome to the Pig Dice Game - Normal Variation! You are the player and you play against the computer.
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
 
@@ -18,7 +18,7 @@ Check that you have the latest version of Python 3 installed
 ## MAKE AND MAKEFILE
 
 Make sure you have 'make' installed in your machine to make it easy for you
-to compile, build and certain features such as for testing and generating documentation
+to compile, build and have certain features such as for testing and generating documentation
 If not installed see video on how to install:
 
 https://www.youtube.com/watch?v=5TavcolACQY&list=PLEtyhUSKTK3hOCnMrPKGOu3_VjUAkhsgG&index=3
@@ -77,6 +77,7 @@ To run the game, one should go to the 'pig' directory and run
 ## HELP IN GAME, HOW TO PLAY AND OTHER COMMANDS
 
 You are free to type '?' or 'help' and a command afterwards to get a description of what the command does
+
 You can get the list of commands just by typing '?' or 'help'
 
 To start/restart the game you shall type 'start'.
@@ -93,11 +94,14 @@ If you cheat, your results and stats won't be stored/recorded.
 A useful command is 'show' to show the results of you and the computer in the current game
 
 Other commands:
-rules - to see the rules and instructions of the game
-scores - to see the highscore list from the played games so far (non-cheated only)
-exit - exit or quits the game
-histogram - to see histogram  of dice values of players (non-cheated only)
 
+rules - to see the rules and instructions of the game
+
+scores - to see the highscore list from the played games so far (non-cheated only)
+
+exit - exit or quits the game
+
+histogram - to see histogram  of dice values of players (non-cheated only)
 
 ## UNIT TESTING
 
@@ -148,6 +152,7 @@ After the installation is done you can check what version you got.
         $ dot -V
 
 pydoc
+
 Use pydoc to generate documentation for any class.
 You will get a quick and readable documentation generated from your source code.
 For example with Dice class
@@ -169,6 +174,7 @@ To generate UML diagrams you can just type
         make pyreverse
 
 (make sure you are in the 'pig directory when running all these commands')
+
 This will generate UML diagrams inside doc/pyreverse
 
 To run both pydoc for all classes/files in directory and pyreverse for UML diagram, 
