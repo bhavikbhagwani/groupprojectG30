@@ -34,5 +34,11 @@
         "score": 55,
         "num_rounds": 6,
         "difficulty": "easy"
+    },
+    {
+        "player_name": "papi",
+        "score": 55,
+        "num_rounds": 6,
+        "difficulty": "hard"
     }
 ]
