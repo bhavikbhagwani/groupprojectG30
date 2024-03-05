@@ -17,7 +17,7 @@ Check that you have the latest version of Python 3 installed
 
 ## MAKE AND MAKEFILE
 
-Make sure you have 'make' installed in your machine to make it easy for you
+We recommend working with the MakkeFile so make sure you have 'make' installed in your machine to make it easy for you
 to compile, build and have certain features such as for testing and generating documentation
 If not installed see video on how to install:
 
