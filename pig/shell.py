@@ -37,7 +37,7 @@ class Shell(cmd.Cmd):
         print("But be careful, if you get a one on the dice, you lose all the")
         print("current points you accumulated")
         print("")
-        print("To start, first start the game using 'start' then")
+        print("To start, first start the game typing 'start' then")
         print("change your name typing 'name' followed by your name and then")
         print("set the difficulty typing 'difficulty' followed")
         print("by the difficulty (easy, medium, hard)")
