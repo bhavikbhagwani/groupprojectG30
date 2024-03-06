@@ -243,6 +243,7 @@ class TestGameClass(unittest.TestCase):
         res = game_test.check_if_computer_wins(4, 30)
         self.assertFalse(res)
 
+
 class TestHighScoreClass(unittest.TestCase):
     """Test the HighScore Class."""
 
@@ -341,13 +342,13 @@ class TestHistogramClass(unittest.TestCase):
         expected_data = {
             "player_name": "nameEx",
             "hist": {
-            "1": 3,
-            "2": 4,
-            "3": 2,
-            "4": 1,
-            "5": 3,
-            "6": 1
-            }
+                "1": 3,
+                "2": 4,
+                "3": 2,
+                "4": 1,
+                "5": 3,
+                "6": 1
+                }
         }
 
         self.assertEqual(game_data, expected_data)
@@ -357,26 +358,26 @@ class TestHistogramClass(unittest.TestCase):
         """Test writing into file that already has data."""
         histogram_test = histogram.Histogram()
         name_example = "nameEx"
-        freq_list_ex = [3,4,2,1,3,1]
+        freq_list_ex = [3, 4, 2, 1, 3, 1]
         histogram_test.set_info(
             name_example,
             freq_list_ex)
 
         histogram_test.write_into_file("tryjson.json")
         histogram_test = histogram.Histogram()
-        histogram_test.set_info("nameEx2", [1,2,3,4,5,6])
+        histogram_test.set_info("nameEx2", [1, 2, 3, 4, 5, 6])
         game_data_2 = histogram_test.write_into_file("tryjson.json")
 
         expected_data = {
             "player_name": "nameEx2",
             "hist": {
-            "1": 1,
-            "2": 2,
-            "3": 3,
-            "4": 4,
-            "5": 5,
-            "6": 6
-            }
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 4,
+                "5": 5,
+                "6": 6
+                }
         }
 
         self.assertEqual(game_data_2, expected_data)
@@ -386,7 +387,7 @@ class TestHistogramClass(unittest.TestCase):
         """Test Readinng From File."""
         histogram_test = histogram.Histogram()
         name_example = "nameEx"
-        freq_list_ex = [3,4,2,1,3,1]
+        freq_list_ex = [3, 4, 2, 1, 3, 1]
         histogram_test.set_info(
             name_example,
             freq_list_ex)
@@ -399,13 +400,13 @@ class TestHistogramClass(unittest.TestCase):
             game_data = {
                 "player_name": "nameEx2",
                 "hist": {
-                "1": 1,
-                "2": 2,
-                "3": 3,
-                "4": 4,
-                "5": 5,
-                "6": 6
-                }
+                    "1": 1,
+                    "2": 2,
+                    "3": 3,
+                    "4": 4,
+                    "5": 5,
+                    "6": 6
+                    }
             }
             json.dump([game_data], temp_file)
 
@@ -421,13 +422,14 @@ class TestHistogramClass(unittest.TestCase):
         """Test Reading From Non Existing File."""
         histogram_test = histogram.Histogram()
         name_example = "nameEx"
-        freq_list_ex = [3,4,2,1,3,1]
+        freq_list_ex = [3, 4, 2, 1, 3, 1]
         histogram_test.set_info(
             name_example,
             freq_list_ex)
 
         scores = histogram_test.read_histogram("non-existing.json")
         self.assertEqual(len(scores), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -16,7 +16,6 @@ class Histogram:
         self.name = None
         self.frequency_list = None
 
-
     def set_info(self, name, freq_list):
         """Set info to write into file."""
         self.name = name
@@ -36,19 +35,19 @@ class Histogram:
 
         try:
             with open(filename, "r", encoding="utf-8") as file:
-                existing_data = json.load(file)
+                ex_data = json.load(file)
         except FileNotFoundError:
-            existing_data = []
+            ex_data = []
 
-        existing_data.append(histogram_data)
+        ex_data.append(histogram_data)
 
         with open(
             filename,
             "w",
             encoding="utf-8"
         ) as histogram_json_file:
-            json.dump(existing_data, histogram_json_file, indent=2)
-        
+            json.dump(ex_data, histogram_json_file, indent=2)
+
         return histogram_data
 
     def read_histogram(self, filename):

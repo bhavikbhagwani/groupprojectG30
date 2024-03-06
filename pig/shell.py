@@ -7,7 +7,6 @@ You can read about the cmd module in the docs:
 
 import cmd
 import random
-import json
 from game import Game
 import highscore
 import histogram
@@ -276,10 +275,10 @@ class Shell(cmd.Cmd):
             return
 
         print("\n")
-        print("You decided to cheat. You will get 30 free points")
+        print("You decided to cheat. You will get (30) free points")
         z = self.game.player_cheats()
 
-        print(f"Your score now is {z[0]}")
+        print(f"Your score now is ({z[0]})")
 
         if not self.game.check_if_player_wins(self.game.player_1.score):
             self._do_computer_plays_now()

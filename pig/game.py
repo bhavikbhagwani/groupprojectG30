@@ -7,7 +7,6 @@ and is responsible for all the shell commands in the shell.py
 This is like the heart of the program
 """
 
-import json
 import player
 import computer
 import dice
@@ -110,5 +109,3 @@ class Game:
         x.append(self.player_1.num_rounds)
         x.append(self.computer.difficulty)
         return x
-
-    
