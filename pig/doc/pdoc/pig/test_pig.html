@@ -1,0 +1,1518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pig.test_pig API documentation</title>
+<meta name="description" content="Unit testing." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pig.test_pig</code></h1>
+</header>
+<section id="section-intro">
+<p>Unit testing.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Unit testing.&#34;&#34;&#34;
+
+import os
+import json
+import tempfile
+import random
+import unittest
+import dice
+import computer
+import player
+import game
+import highscore
+
+
+class TestDiceClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Dice Class.&#34;&#34;&#34;
+
+    def test_init_default_object(self):
+        &#34;&#34;&#34;Test Init of Dice.&#34;&#34;&#34;
+        die = dice.Dice()
+        self.assertIsInstance(die, dice.Dice)
+
+        res = die.faces
+        exp = 6
+        self.assertEqual(res, exp)
+
+    def test_roll_a_dice(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        die = dice.Dice()
+
+        res = die.roll()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+
+class TestComputerClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Computer Class.&#34;&#34;&#34;
+
+    def test_setting_difficulty(self):
+        &#34;&#34;&#34;Set difficulty and test if either easy,medium or hard.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+
+        example_difficulty = random.choice([&#34;easy&#34;, &#34;medium&#34;, &#34;hard&#34;])
+
+        res = computer_test.set_computer_difficulty(example_difficulty)
+        self.assertEqual(res, example_difficulty)
+
+    def test_roll_a_dice_for_computer_easy(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;easy&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_a_dice_for_computer_medium(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;medium&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_a_dice_for_computer_hard(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;hard&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_decision_return_for_computer(self):
+        &#34;&#34;&#34;Decision for computer.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+
+        res = computer_test.return_decision_of_computer()
+
+        self.assertTrue(res in [&#34;roll&#34;, &#34;hold&#34;])
+
+
+class TestPlayerClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Computer Class.&#34;&#34;&#34;
+
+    def test_roll_of_player(self):
+        &#34;&#34;&#34;Testing roll of player.&#34;&#34;&#34;
+        player_test = player.Player()
+
+        res = player_test.roll()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_of_player_frequency(self):
+        &#34;&#34;&#34;Testing increase of frequency when dice rolled.&#34;&#34;&#34;
+        player_test = player.Player()
+        freq_list = player_test.frequency
+        dice_value = player_test.roll()
+        if dice_value == 1:
+            self.assertEqual(freq_list[0], 1)
+        elif dice_value == 2:
+            self.assertEqual(freq_list[1], 1)
+        elif dice_value == 3:
+            self.assertEqual(freq_list[2], 1)
+        elif dice_value == 4:
+            self.assertEqual(freq_list[3], 1)
+        elif dice_value == 5:
+            self.assertEqual(freq_list[4], 1)
+        elif dice_value == 6:
+            self.assertEqual(freq_list[5], 1)
+
+
+class TestGameClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Game Class.&#34;&#34;&#34;
+
+    def test_init_default_object(self):
+        &#34;&#34;&#34;Test Init Game.&#34;&#34;&#34;
+        game_test = game.Game()
+        self.assertIsInstance(game_test, game.Game)
+
+    def test_get_correct_name(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        game_test = game.Game()
+        name = &#34;Larsson&#34;
+        res = game_test.set_player_names(name)
+        exp = name
+        self.assertEqual(res, exp)
+
+    def test_player_roll_dice_1(self):
+        &#34;&#34;&#34;Player Rolls and Scores 1 Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        list_of_values = game_test.player_rolls(1)
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+
+        self.assertTrue(list_of_values[4])
+
+    def test_player_roll_dice_not_1(self):
+        &#34;&#34;&#34;Player Rolls and Score Not 1 Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        current_round_score_before = game_test.player_1.current_round_score
+        list_of_values = game_test.player_rolls(4)
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertFalse(list_of_values[4])
+        self.assertGreater(list_of_values[1], current_round_score_before)
+
+    def test_player_holds(self):
+        &#34;&#34;&#34;Player Holds Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        num_rounds_before = game_test.player_1.num_rounds
+        list_of_values = game_test.player_holds()
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.num_rounds, list_of_values)
+
+        self.assertGreater(list_of_values[3], num_rounds_before)
+
+    def test_roll_and_hold(self):
+        &#34;&#34;&#34;Player Rolls and Holds Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        list_of_values = game_test.player_rolls(5)
+        name_before = list_of_values[0]
+        c_r_s_before = list_of_values[1]
+        score_before = list_of_values[2]
+
+        list_of_values_2 = game_test.player_holds()
+        self.assertEqual(name_before, list_of_values_2[0])
+        self.assertGreater(list_of_values_2[1], score_before)
+        self.assertLess(list_of_values_2[2], c_r_s_before)
+
+    def test_player_cheats(self):
+        &#34;&#34;&#34;Player Cheats Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        cheats_used_before = game_test.cheats_used
+        num_rounds_before = game_test.player_1.num_rounds
+        score_before = game_test.player_1.score
+
+        list_of_values = game_test.player_cheats()
+        score = list_of_values[0]
+        cheats_used = list_of_values[3]
+        num_rounds = list_of_values[2]
+
+        self.assertTrue(cheats_used)
+        self.assertNotEqual(cheats_used_before, cheats_used)
+        self.assertGreater(num_rounds, num_rounds_before)
+        self.assertGreater(score, score_before)
+
+    def test_getting_scores(self):
+        &#34;&#34;&#34;Retrieving Player Info Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        list_of_values = game_test.get_player_info()
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.player_1.num_rounds, list_of_values)
+        self.assertIn(game_test.computer.difficulty, list_of_values)
+
+    def test_scores_getting(self):
+        &#34;&#34;&#34;Retrieve Getting Scores.&#34;&#34;&#34;
+        game_test = game.Game()
+        list_of_values = game_test.get_scores()
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.computer.name, list_of_values)
+        self.assertIn(game_test.computer.score, list_of_values)
+
+    def test_check_if_player_wins_true(self):
+        &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_player_wins(51)
+        self.assertTrue(res)
+
+    def test_check_if_player_wins_false(self):
+        &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_player_wins(45)
+        self.assertFalse(res)
+
+    def test_check_if_computer_wins_true(self):
+        &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_computer_wins(2, 49)
+        self.assertTrue(res)
+
+    def test_check_if_computer_wins_false(self):
+        &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_computer_wins(4, 30)
+        self.assertFalse(res)
+
+    def test_reading_histogram_from_file(self):
+        &#34;&#34;&#34;Test Reading Histogram.&#34;&#34;&#34;
+        game_test = game.Game()
+        with tempfile.NamedTemporaryFile(
+            mode=&#39;w&#39;,
+            delete=False,
+            suffix=&#34;.json&#34;
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                &#34;player_name&#34;: &#34;tattu&#34;,
+                &#34;hist&#34;: {
+                    &#34;1&#34;: 2,
+                    &#34;2&#34;: 4,
+                    &#34;3&#34;: 1,
+                    &#34;4&#34;: 3,
+                    &#34;5&#34;: 3,
+                    &#34;6&#34;: 4
+                }
+            }
+            json.dump([game_data], temp_file)
+
+        try:
+            histogram_data = game_test.read_histogram(temp_filename)
+
+            self.assertIsInstance(histogram_data, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_histogram(self):
+        &#34;&#34;&#34;Test Reading From Not Existing Histogram File.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        histogram_data = game_test.read_histogram(&#34;non-existing_2.json&#34;)
+        self.assertEqual(len(histogram_data), 0)
+
+
+class TestHighScoreClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the HighScore Class.&#34;&#34;&#34;
+
+    def test_write_file(self):
+        &#34;&#34;&#34;Testing file writing.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+        game_data = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        expected_data = {
+            &#34;player_name&#34;: &#34;nameEx&#34;,
+            &#34;score&#34;: 55,
+            &#34;num_rounds&#34;: 10,
+            &#34;difficulty&#34;: &#34;medium&#34;
+        }
+
+        self.assertEqual(game_data, expected_data)
+        os.remove(&#34;tryjson.json&#34;)
+
+    def test_write_to_already_exist_file(self):
+        &#34;&#34;&#34;Test writing into file that already has data.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+        highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx2&#34;, 60, 11, &#34;easy&#34;)
+        game_data_2 = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        expected_data = {
+            &#34;player_name&#34;: &#34;nameEx2&#34;,
+            &#34;score&#34;: 60,
+            &#34;num_rounds&#34;: 11,
+            &#34;difficulty&#34;: &#34;easy&#34;
+        }
+
+        self.assertEqual(game_data_2, expected_data)
+        os.remove(&#34;tryjson.json&#34;)
+
+    def test_reading_scores_from_file(self):
+        &#34;&#34;&#34;Test Readinng From File.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+        with tempfile.NamedTemporaryFile(
+            mode=&#39;w&#39;,
+            delete=False,
+            suffix=&#34;.json&#34;
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                &#34;player_name&#34;: &#34;player_name&#34;,
+                &#34;score&#34;: &#34;player_score&#34;,
+                &#34;num_rounds&#34;: &#34;player_rounds&#34;,
+                &#34;difficulty&#34;: &#34;player_difficulty&#34;
+                }
+            json.dump([game_data], temp_file)
+
+        try:
+            scores = highscore_test.read_from_file(temp_filename)
+
+            self.assertIsInstance(scores, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_scores_from_not_existing_file(self):
+        &#34;&#34;&#34;Test Reading From Non Existing File.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+        scores = highscore_test.read_from_file(&#34;non-existing.json&#34;)
+        self.assertEqual(len(scores), 0)
+
+
+if __name__ == &#34;__main__&#34;:
+    unittest.main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pig.test_pig.TestComputerClass"><code class="flex name class">
+<span>class <span class="ident">TestComputerClass</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test the Computer Class.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestComputerClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Computer Class.&#34;&#34;&#34;
+
+    def test_setting_difficulty(self):
+        &#34;&#34;&#34;Set difficulty and test if either easy,medium or hard.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+
+        example_difficulty = random.choice([&#34;easy&#34;, &#34;medium&#34;, &#34;hard&#34;])
+
+        res = computer_test.set_computer_difficulty(example_difficulty)
+        self.assertEqual(res, example_difficulty)
+
+    def test_roll_a_dice_for_computer_easy(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;easy&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_a_dice_for_computer_medium(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;medium&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_a_dice_for_computer_hard(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+        computer_test.set_computer_difficulty(&#34;hard&#34;)
+        res = computer_test.return_computer_rolled_dice_value()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_decision_return_for_computer(self):
+        &#34;&#34;&#34;Decision for computer.&#34;&#34;&#34;
+        computer_test = computer.Computer()
+
+        res = computer_test.return_decision_of_computer()
+
+        self.assertTrue(res in [&#34;roll&#34;, &#34;hold&#34;])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pig.test_pig.TestComputerClass.test_decision_return_for_computer"><code class="name flex">
+<span>def <span class="ident">test_decision_return_for_computer</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Decision for computer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_decision_return_for_computer(self):
+    &#34;&#34;&#34;Decision for computer.&#34;&#34;&#34;
+    computer_test = computer.Computer()
+
+    res = computer_test.return_decision_of_computer()
+
+    self.assertTrue(res in [&#34;roll&#34;, &#34;hold&#34;])</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_easy"><code class="name flex">
+<span>def <span class="ident">test_roll_a_dice_for_computer_easy</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Roll a dice and check value is in bounds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_a_dice_for_computer_easy(self):
+    &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+    computer_test = computer.Computer()
+    computer_test.set_computer_difficulty(&#34;easy&#34;)
+    res = computer_test.return_computer_rolled_dice_value()
+    exp = 1 &lt;= res &lt;= 6
+    self.assertTrue(exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_hard"><code class="name flex">
+<span>def <span class="ident">test_roll_a_dice_for_computer_hard</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Roll a dice and check value is in bounds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_a_dice_for_computer_hard(self):
+    &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+    computer_test = computer.Computer()
+    computer_test.set_computer_difficulty(&#34;hard&#34;)
+    res = computer_test.return_computer_rolled_dice_value()
+    exp = 1 &lt;= res &lt;= 6
+    self.assertTrue(exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_medium"><code class="name flex">
+<span>def <span class="ident">test_roll_a_dice_for_computer_medium</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Roll a dice and check value is in bounds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_a_dice_for_computer_medium(self):
+    &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+    computer_test = computer.Computer()
+    computer_test.set_computer_difficulty(&#34;medium&#34;)
+    res = computer_test.return_computer_rolled_dice_value()
+    exp = 1 &lt;= res &lt;= 6
+    self.assertTrue(exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestComputerClass.test_setting_difficulty"><code class="name flex">
+<span>def <span class="ident">test_setting_difficulty</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set difficulty and test if either easy,medium or hard.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_setting_difficulty(self):
+    &#34;&#34;&#34;Set difficulty and test if either easy,medium or hard.&#34;&#34;&#34;
+    computer_test = computer.Computer()
+
+    example_difficulty = random.choice([&#34;easy&#34;, &#34;medium&#34;, &#34;hard&#34;])
+
+    res = computer_test.set_computer_difficulty(example_difficulty)
+    self.assertEqual(res, example_difficulty)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pig.test_pig.TestDiceClass"><code class="flex name class">
+<span>class <span class="ident">TestDiceClass</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test the Dice Class.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestDiceClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Dice Class.&#34;&#34;&#34;
+
+    def test_init_default_object(self):
+        &#34;&#34;&#34;Test Init of Dice.&#34;&#34;&#34;
+        die = dice.Dice()
+        self.assertIsInstance(die, dice.Dice)
+
+        res = die.faces
+        exp = 6
+        self.assertEqual(res, exp)
+
+    def test_roll_a_dice(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        die = dice.Dice()
+
+        res = die.roll()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pig.test_pig.TestDiceClass.test_init_default_object"><code class="name flex">
+<span>def <span class="ident">test_init_default_object</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Init of Dice.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_init_default_object(self):
+    &#34;&#34;&#34;Test Init of Dice.&#34;&#34;&#34;
+    die = dice.Dice()
+    self.assertIsInstance(die, dice.Dice)
+
+    res = die.faces
+    exp = 6
+    self.assertEqual(res, exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestDiceClass.test_roll_a_dice"><code class="name flex">
+<span>def <span class="ident">test_roll_a_dice</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Roll a dice and check value is in bounds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_a_dice(self):
+    &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+    die = dice.Dice()
+
+    res = die.roll()
+    exp = 1 &lt;= res &lt;= 6
+    self.assertTrue(exp)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pig.test_pig.TestGameClass"><code class="flex name class">
+<span>class <span class="ident">TestGameClass</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test the Game Class.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestGameClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Game Class.&#34;&#34;&#34;
+
+    def test_init_default_object(self):
+        &#34;&#34;&#34;Test Init Game.&#34;&#34;&#34;
+        game_test = game.Game()
+        self.assertIsInstance(game_test, game.Game)
+
+    def test_get_correct_name(self):
+        &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+        game_test = game.Game()
+        name = &#34;Larsson&#34;
+        res = game_test.set_player_names(name)
+        exp = name
+        self.assertEqual(res, exp)
+
+    def test_player_roll_dice_1(self):
+        &#34;&#34;&#34;Player Rolls and Scores 1 Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        list_of_values = game_test.player_rolls(1)
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+
+        self.assertTrue(list_of_values[4])
+
+    def test_player_roll_dice_not_1(self):
+        &#34;&#34;&#34;Player Rolls and Score Not 1 Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        current_round_score_before = game_test.player_1.current_round_score
+        list_of_values = game_test.player_rolls(4)
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertFalse(list_of_values[4])
+        self.assertGreater(list_of_values[1], current_round_score_before)
+
+    def test_player_holds(self):
+        &#34;&#34;&#34;Player Holds Test.&#34;&#34;&#34;
+        game_test = game.Game()
+        num_rounds_before = game_test.player_1.num_rounds
+        list_of_values = game_test.player_holds()
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.player_1.current_round_score, list_of_values)
+        self.assertIn(game_test.player_1.num_rounds, list_of_values)
+
+        self.assertGreater(list_of_values[3], num_rounds_before)
+
+    def test_roll_and_hold(self):
+        &#34;&#34;&#34;Player Rolls and Holds Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        list_of_values = game_test.player_rolls(5)
+        name_before = list_of_values[0]
+        c_r_s_before = list_of_values[1]
+        score_before = list_of_values[2]
+
+        list_of_values_2 = game_test.player_holds()
+        self.assertEqual(name_before, list_of_values_2[0])
+        self.assertGreater(list_of_values_2[1], score_before)
+        self.assertLess(list_of_values_2[2], c_r_s_before)
+
+    def test_player_cheats(self):
+        &#34;&#34;&#34;Player Cheats Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        cheats_used_before = game_test.cheats_used
+        num_rounds_before = game_test.player_1.num_rounds
+        score_before = game_test.player_1.score
+
+        list_of_values = game_test.player_cheats()
+        score = list_of_values[0]
+        cheats_used = list_of_values[3]
+        num_rounds = list_of_values[2]
+
+        self.assertTrue(cheats_used)
+        self.assertNotEqual(cheats_used_before, cheats_used)
+        self.assertGreater(num_rounds, num_rounds_before)
+        self.assertGreater(score, score_before)
+
+    def test_getting_scores(self):
+        &#34;&#34;&#34;Retrieving Player Info Test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        list_of_values = game_test.get_player_info()
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.player_1.num_rounds, list_of_values)
+        self.assertIn(game_test.computer.difficulty, list_of_values)
+
+    def test_scores_getting(self):
+        &#34;&#34;&#34;Retrieve Getting Scores.&#34;&#34;&#34;
+        game_test = game.Game()
+        list_of_values = game_test.get_scores()
+
+        self.assertIn(game_test.player_1.name, list_of_values)
+        self.assertIn(game_test.player_1.score, list_of_values)
+        self.assertIn(game_test.computer.name, list_of_values)
+        self.assertIn(game_test.computer.score, list_of_values)
+
+    def test_check_if_player_wins_true(self):
+        &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_player_wins(51)
+        self.assertTrue(res)
+
+    def test_check_if_player_wins_false(self):
+        &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_player_wins(45)
+        self.assertFalse(res)
+
+    def test_check_if_computer_wins_true(self):
+        &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_computer_wins(2, 49)
+        self.assertTrue(res)
+
+    def test_check_if_computer_wins_false(self):
+        &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        res = game_test.check_if_computer_wins(4, 30)
+        self.assertFalse(res)
+
+    def test_reading_histogram_from_file(self):
+        &#34;&#34;&#34;Test Reading Histogram.&#34;&#34;&#34;
+        game_test = game.Game()
+        with tempfile.NamedTemporaryFile(
+            mode=&#39;w&#39;,
+            delete=False,
+            suffix=&#34;.json&#34;
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                &#34;player_name&#34;: &#34;tattu&#34;,
+                &#34;hist&#34;: {
+                    &#34;1&#34;: 2,
+                    &#34;2&#34;: 4,
+                    &#34;3&#34;: 1,
+                    &#34;4&#34;: 3,
+                    &#34;5&#34;: 3,
+                    &#34;6&#34;: 4
+                }
+            }
+            json.dump([game_data], temp_file)
+
+        try:
+            histogram_data = game_test.read_histogram(temp_filename)
+
+            self.assertIsInstance(histogram_data, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_histogram(self):
+        &#34;&#34;&#34;Test Reading From Not Existing Histogram File.&#34;&#34;&#34;
+        game_test = game.Game()
+
+        histogram_data = game_test.read_histogram(&#34;non-existing_2.json&#34;)
+        self.assertEqual(len(histogram_data), 0)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pig.test_pig.TestGameClass.test_check_if_computer_wins_false"><code class="name flex">
+<span>def <span class="ident">test_check_if_computer_wins_false</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computer wins test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_check_if_computer_wins_false(self):
+    &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    res = game_test.check_if_computer_wins(4, 30)
+    self.assertFalse(res)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_check_if_computer_wins_true"><code class="name flex">
+<span>def <span class="ident">test_check_if_computer_wins_true</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computer wins test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_check_if_computer_wins_true(self):
+    &#34;&#34;&#34;Computer wins test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    res = game_test.check_if_computer_wins(2, 49)
+    self.assertTrue(res)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_check_if_player_wins_false"><code class="name flex">
+<span>def <span class="ident">test_check_if_player_wins_false</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player wins test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_check_if_player_wins_false(self):
+    &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    res = game_test.check_if_player_wins(45)
+    self.assertFalse(res)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_check_if_player_wins_true"><code class="name flex">
+<span>def <span class="ident">test_check_if_player_wins_true</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player wins test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_check_if_player_wins_true(self):
+    &#34;&#34;&#34;Player wins test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    res = game_test.check_if_player_wins(51)
+    self.assertTrue(res)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_get_correct_name"><code class="name flex">
+<span>def <span class="ident">test_get_correct_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Roll a dice and check value is in bounds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_correct_name(self):
+    &#34;&#34;&#34;Roll a dice and check value is in bounds.&#34;&#34;&#34;
+    game_test = game.Game()
+    name = &#34;Larsson&#34;
+    res = game_test.set_player_names(name)
+    exp = name
+    self.assertEqual(res, exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_getting_scores"><code class="name flex">
+<span>def <span class="ident">test_getting_scores</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieving Player Info Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_getting_scores(self):
+    &#34;&#34;&#34;Retrieving Player Info Test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    list_of_values = game_test.get_player_info()
+
+    self.assertIn(game_test.player_1.name, list_of_values)
+    self.assertIn(game_test.player_1.score, list_of_values)
+    self.assertIn(game_test.player_1.num_rounds, list_of_values)
+    self.assertIn(game_test.computer.difficulty, list_of_values)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_init_default_object"><code class="name flex">
+<span>def <span class="ident">test_init_default_object</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Init Game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_init_default_object(self):
+    &#34;&#34;&#34;Test Init Game.&#34;&#34;&#34;
+    game_test = game.Game()
+    self.assertIsInstance(game_test, game.Game)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_player_cheats"><code class="name flex">
+<span>def <span class="ident">test_player_cheats</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player Cheats Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_player_cheats(self):
+    &#34;&#34;&#34;Player Cheats Test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    cheats_used_before = game_test.cheats_used
+    num_rounds_before = game_test.player_1.num_rounds
+    score_before = game_test.player_1.score
+
+    list_of_values = game_test.player_cheats()
+    score = list_of_values[0]
+    cheats_used = list_of_values[3]
+    num_rounds = list_of_values[2]
+
+    self.assertTrue(cheats_used)
+    self.assertNotEqual(cheats_used_before, cheats_used)
+    self.assertGreater(num_rounds, num_rounds_before)
+    self.assertGreater(score, score_before)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_player_holds"><code class="name flex">
+<span>def <span class="ident">test_player_holds</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player Holds Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_player_holds(self):
+    &#34;&#34;&#34;Player Holds Test.&#34;&#34;&#34;
+    game_test = game.Game()
+    num_rounds_before = game_test.player_1.num_rounds
+    list_of_values = game_test.player_holds()
+    self.assertIn(game_test.player_1.name, list_of_values)
+    self.assertIn(game_test.player_1.score, list_of_values)
+    self.assertIn(game_test.player_1.current_round_score, list_of_values)
+    self.assertIn(game_test.player_1.num_rounds, list_of_values)
+
+    self.assertGreater(list_of_values[3], num_rounds_before)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_player_roll_dice_1"><code class="name flex">
+<span>def <span class="ident">test_player_roll_dice_1</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player Rolls and Scores 1 Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_player_roll_dice_1(self):
+    &#34;&#34;&#34;Player Rolls and Scores 1 Test.&#34;&#34;&#34;
+    game_test = game.Game()
+    list_of_values = game_test.player_rolls(1)
+
+    self.assertIn(game_test.player_1.name, list_of_values)
+    self.assertIn(game_test.player_1.current_round_score, list_of_values)
+    self.assertIn(game_test.player_1.score, list_of_values)
+
+    self.assertTrue(list_of_values[4])</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_player_roll_dice_not_1"><code class="name flex">
+<span>def <span class="ident">test_player_roll_dice_not_1</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player Rolls and Score Not 1 Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_player_roll_dice_not_1(self):
+    &#34;&#34;&#34;Player Rolls and Score Not 1 Test.&#34;&#34;&#34;
+    game_test = game.Game()
+    current_round_score_before = game_test.player_1.current_round_score
+    list_of_values = game_test.player_rolls(4)
+
+    self.assertIn(game_test.player_1.name, list_of_values)
+    self.assertIn(game_test.player_1.current_round_score, list_of_values)
+    self.assertIn(game_test.player_1.score, list_of_values)
+    self.assertFalse(list_of_values[4])
+    self.assertGreater(list_of_values[1], current_round_score_before)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_reading_histogram"><code class="name flex">
+<span>def <span class="ident">test_reading_histogram</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Reading From Not Existing Histogram File.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_reading_histogram(self):
+    &#34;&#34;&#34;Test Reading From Not Existing Histogram File.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    histogram_data = game_test.read_histogram(&#34;non-existing_2.json&#34;)
+    self.assertEqual(len(histogram_data), 0)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_reading_histogram_from_file"><code class="name flex">
+<span>def <span class="ident">test_reading_histogram_from_file</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Reading Histogram.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_reading_histogram_from_file(self):
+    &#34;&#34;&#34;Test Reading Histogram.&#34;&#34;&#34;
+    game_test = game.Game()
+    with tempfile.NamedTemporaryFile(
+        mode=&#39;w&#39;,
+        delete=False,
+        suffix=&#34;.json&#34;
+    ) as temp_file:
+        temp_filename = temp_file.name
+        game_data = {
+            &#34;player_name&#34;: &#34;tattu&#34;,
+            &#34;hist&#34;: {
+                &#34;1&#34;: 2,
+                &#34;2&#34;: 4,
+                &#34;3&#34;: 1,
+                &#34;4&#34;: 3,
+                &#34;5&#34;: 3,
+                &#34;6&#34;: 4
+            }
+        }
+        json.dump([game_data], temp_file)
+
+    try:
+        histogram_data = game_test.read_histogram(temp_filename)
+
+        self.assertIsInstance(histogram_data, list)
+
+    finally:
+        os.remove(temp_filename)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_roll_and_hold"><code class="name flex">
+<span>def <span class="ident">test_roll_and_hold</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Player Rolls and Holds Test.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_and_hold(self):
+    &#34;&#34;&#34;Player Rolls and Holds Test.&#34;&#34;&#34;
+    game_test = game.Game()
+
+    list_of_values = game_test.player_rolls(5)
+    name_before = list_of_values[0]
+    c_r_s_before = list_of_values[1]
+    score_before = list_of_values[2]
+
+    list_of_values_2 = game_test.player_holds()
+    self.assertEqual(name_before, list_of_values_2[0])
+    self.assertGreater(list_of_values_2[1], score_before)
+    self.assertLess(list_of_values_2[2], c_r_s_before)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestGameClass.test_scores_getting"><code class="name flex">
+<span>def <span class="ident">test_scores_getting</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve Getting Scores.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_scores_getting(self):
+    &#34;&#34;&#34;Retrieve Getting Scores.&#34;&#34;&#34;
+    game_test = game.Game()
+    list_of_values = game_test.get_scores()
+
+    self.assertIn(game_test.player_1.name, list_of_values)
+    self.assertIn(game_test.player_1.score, list_of_values)
+    self.assertIn(game_test.computer.name, list_of_values)
+    self.assertIn(game_test.computer.score, list_of_values)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pig.test_pig.TestHighScoreClass"><code class="flex name class">
+<span>class <span class="ident">TestHighScoreClass</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test the HighScore Class.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestHighScoreClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the HighScore Class.&#34;&#34;&#34;
+
+    def test_write_file(self):
+        &#34;&#34;&#34;Testing file writing.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+        game_data = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        expected_data = {
+            &#34;player_name&#34;: &#34;nameEx&#34;,
+            &#34;score&#34;: 55,
+            &#34;num_rounds&#34;: 10,
+            &#34;difficulty&#34;: &#34;medium&#34;
+        }
+
+        self.assertEqual(game_data, expected_data)
+        os.remove(&#34;tryjson.json&#34;)
+
+    def test_write_to_already_exist_file(self):
+        &#34;&#34;&#34;Test writing into file that already has data.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+        highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx2&#34;, 60, 11, &#34;easy&#34;)
+        game_data_2 = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+        expected_data = {
+            &#34;player_name&#34;: &#34;nameEx2&#34;,
+            &#34;score&#34;: 60,
+            &#34;num_rounds&#34;: 11,
+            &#34;difficulty&#34;: &#34;easy&#34;
+        }
+
+        self.assertEqual(game_data_2, expected_data)
+        os.remove(&#34;tryjson.json&#34;)
+
+    def test_reading_scores_from_file(self):
+        &#34;&#34;&#34;Test Readinng From File.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+        with tempfile.NamedTemporaryFile(
+            mode=&#39;w&#39;,
+            delete=False,
+            suffix=&#34;.json&#34;
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                &#34;player_name&#34;: &#34;player_name&#34;,
+                &#34;score&#34;: &#34;player_score&#34;,
+                &#34;num_rounds&#34;: &#34;player_rounds&#34;,
+                &#34;difficulty&#34;: &#34;player_difficulty&#34;
+                }
+            json.dump([game_data], temp_file)
+
+        try:
+            scores = highscore_test.read_from_file(temp_filename)
+
+            self.assertIsInstance(scores, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_scores_from_not_existing_file(self):
+        &#34;&#34;&#34;Test Reading From Non Existing File.&#34;&#34;&#34;
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+        scores = highscore_test.read_from_file(&#34;non-existing.json&#34;)
+        self.assertEqual(len(scores), 0)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pig.test_pig.TestHighScoreClass.test_reading_scores_from_file"><code class="name flex">
+<span>def <span class="ident">test_reading_scores_from_file</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Readinng From File.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_reading_scores_from_file(self):
+    &#34;&#34;&#34;Test Readinng From File.&#34;&#34;&#34;
+    highscore_test = highscore.HighScore()
+    highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+    with tempfile.NamedTemporaryFile(
+        mode=&#39;w&#39;,
+        delete=False,
+        suffix=&#34;.json&#34;
+    ) as temp_file:
+        temp_filename = temp_file.name
+        game_data = {
+            &#34;player_name&#34;: &#34;player_name&#34;,
+            &#34;score&#34;: &#34;player_score&#34;,
+            &#34;num_rounds&#34;: &#34;player_rounds&#34;,
+            &#34;difficulty&#34;: &#34;player_difficulty&#34;
+            }
+        json.dump([game_data], temp_file)
+
+    try:
+        scores = highscore_test.read_from_file(temp_filename)
+
+        self.assertIsInstance(scores, list)
+
+    finally:
+        os.remove(temp_filename)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestHighScoreClass.test_reading_scores_from_not_existing_file"><code class="name flex">
+<span>def <span class="ident">test_reading_scores_from_not_existing_file</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test Reading From Non Existing File.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_reading_scores_from_not_existing_file(self):
+    &#34;&#34;&#34;Test Reading From Non Existing File.&#34;&#34;&#34;
+    highscore_test = highscore.HighScore()
+    highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+    scores = highscore_test.read_from_file(&#34;non-existing.json&#34;)
+    self.assertEqual(len(scores), 0)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestHighScoreClass.test_write_file"><code class="name flex">
+<span>def <span class="ident">test_write_file</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Testing file writing.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_write_file(self):
+    &#34;&#34;&#34;Testing file writing.&#34;&#34;&#34;
+    highscore_test = highscore.HighScore()
+    highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+
+    game_data = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+    expected_data = {
+        &#34;player_name&#34;: &#34;nameEx&#34;,
+        &#34;score&#34;: 55,
+        &#34;num_rounds&#34;: 10,
+        &#34;difficulty&#34;: &#34;medium&#34;
+    }
+
+    self.assertEqual(game_data, expected_data)
+    os.remove(&#34;tryjson.json&#34;)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestHighScoreClass.test_write_to_already_exist_file"><code class="name flex">
+<span>def <span class="ident">test_write_to_already_exist_file</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test writing into file that already has data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_write_to_already_exist_file(self):
+    &#34;&#34;&#34;Test writing into file that already has data.&#34;&#34;&#34;
+    highscore_test = highscore.HighScore()
+    highscore_test.set_info(&#34;nameEx&#34;, 55, 10, &#34;medium&#34;)
+    highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+    highscore_test = highscore.HighScore()
+    highscore_test.set_info(&#34;nameEx2&#34;, 60, 11, &#34;easy&#34;)
+    game_data_2 = highscore_test.write_into_file(&#34;tryjson.json&#34;)
+
+    expected_data = {
+        &#34;player_name&#34;: &#34;nameEx2&#34;,
+        &#34;score&#34;: 60,
+        &#34;num_rounds&#34;: 11,
+        &#34;difficulty&#34;: &#34;easy&#34;
+    }
+
+    self.assertEqual(game_data_2, expected_data)
+    os.remove(&#34;tryjson.json&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pig.test_pig.TestPlayerClass"><code class="flex name class">
+<span>class <span class="ident">TestPlayerClass</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Test the Computer Class.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestPlayerClass(unittest.TestCase):
+    &#34;&#34;&#34;Test the Computer Class.&#34;&#34;&#34;
+
+    def test_roll_of_player(self):
+        &#34;&#34;&#34;Testing roll of player.&#34;&#34;&#34;
+        player_test = player.Player()
+
+        res = player_test.roll()
+        exp = 1 &lt;= res &lt;= 6
+        self.assertTrue(exp)
+
+    def test_roll_of_player_frequency(self):
+        &#34;&#34;&#34;Testing increase of frequency when dice rolled.&#34;&#34;&#34;
+        player_test = player.Player()
+        freq_list = player_test.frequency
+        dice_value = player_test.roll()
+        if dice_value == 1:
+            self.assertEqual(freq_list[0], 1)
+        elif dice_value == 2:
+            self.assertEqual(freq_list[1], 1)
+        elif dice_value == 3:
+            self.assertEqual(freq_list[2], 1)
+        elif dice_value == 4:
+            self.assertEqual(freq_list[3], 1)
+        elif dice_value == 5:
+            self.assertEqual(freq_list[4], 1)
+        elif dice_value == 6:
+            self.assertEqual(freq_list[5], 1)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pig.test_pig.TestPlayerClass.test_roll_of_player"><code class="name flex">
+<span>def <span class="ident">test_roll_of_player</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Testing roll of player.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_of_player(self):
+    &#34;&#34;&#34;Testing roll of player.&#34;&#34;&#34;
+    player_test = player.Player()
+
+    res = player_test.roll()
+    exp = 1 &lt;= res &lt;= 6
+    self.assertTrue(exp)</code></pre>
+</details>
+</dd>
+<dt id="pig.test_pig.TestPlayerClass.test_roll_of_player_frequency"><code class="name flex">
+<span>def <span class="ident">test_roll_of_player_frequency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Testing increase of frequency when dice rolled.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_roll_of_player_frequency(self):
+    &#34;&#34;&#34;Testing increase of frequency when dice rolled.&#34;&#34;&#34;
+    player_test = player.Player()
+    freq_list = player_test.frequency
+    dice_value = player_test.roll()
+    if dice_value == 1:
+        self.assertEqual(freq_list[0], 1)
+    elif dice_value == 2:
+        self.assertEqual(freq_list[1], 1)
+    elif dice_value == 3:
+        self.assertEqual(freq_list[2], 1)
+    elif dice_value == 4:
+        self.assertEqual(freq_list[3], 1)
+    elif dice_value == 5:
+        self.assertEqual(freq_list[4], 1)
+    elif dice_value == 6:
+        self.assertEqual(freq_list[5], 1)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pig" href="index.html">pig</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pig.test_pig.TestComputerClass" href="#pig.test_pig.TestComputerClass">TestComputerClass</a></code></h4>
+<ul class="">
+<li><code><a title="pig.test_pig.TestComputerClass.test_decision_return_for_computer" href="#pig.test_pig.TestComputerClass.test_decision_return_for_computer">test_decision_return_for_computer</a></code></li>
+<li><code><a title="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_easy" href="#pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_easy">test_roll_a_dice_for_computer_easy</a></code></li>
+<li><code><a title="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_hard" href="#pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_hard">test_roll_a_dice_for_computer_hard</a></code></li>
+<li><code><a title="pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_medium" href="#pig.test_pig.TestComputerClass.test_roll_a_dice_for_computer_medium">test_roll_a_dice_for_computer_medium</a></code></li>
+<li><code><a title="pig.test_pig.TestComputerClass.test_setting_difficulty" href="#pig.test_pig.TestComputerClass.test_setting_difficulty">test_setting_difficulty</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pig.test_pig.TestDiceClass" href="#pig.test_pig.TestDiceClass">TestDiceClass</a></code></h4>
+<ul class="">
+<li><code><a title="pig.test_pig.TestDiceClass.test_init_default_object" href="#pig.test_pig.TestDiceClass.test_init_default_object">test_init_default_object</a></code></li>
+<li><code><a title="pig.test_pig.TestDiceClass.test_roll_a_dice" href="#pig.test_pig.TestDiceClass.test_roll_a_dice">test_roll_a_dice</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pig.test_pig.TestGameClass" href="#pig.test_pig.TestGameClass">TestGameClass</a></code></h4>
+<ul class="">
+<li><code><a title="pig.test_pig.TestGameClass.test_check_if_computer_wins_false" href="#pig.test_pig.TestGameClass.test_check_if_computer_wins_false">test_check_if_computer_wins_false</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_check_if_computer_wins_true" href="#pig.test_pig.TestGameClass.test_check_if_computer_wins_true">test_check_if_computer_wins_true</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_check_if_player_wins_false" href="#pig.test_pig.TestGameClass.test_check_if_player_wins_false">test_check_if_player_wins_false</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_check_if_player_wins_true" href="#pig.test_pig.TestGameClass.test_check_if_player_wins_true">test_check_if_player_wins_true</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_get_correct_name" href="#pig.test_pig.TestGameClass.test_get_correct_name">test_get_correct_name</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_getting_scores" href="#pig.test_pig.TestGameClass.test_getting_scores">test_getting_scores</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_init_default_object" href="#pig.test_pig.TestGameClass.test_init_default_object">test_init_default_object</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_player_cheats" href="#pig.test_pig.TestGameClass.test_player_cheats">test_player_cheats</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_player_holds" href="#pig.test_pig.TestGameClass.test_player_holds">test_player_holds</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_player_roll_dice_1" href="#pig.test_pig.TestGameClass.test_player_roll_dice_1">test_player_roll_dice_1</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_player_roll_dice_not_1" href="#pig.test_pig.TestGameClass.test_player_roll_dice_not_1">test_player_roll_dice_not_1</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_reading_histogram" href="#pig.test_pig.TestGameClass.test_reading_histogram">test_reading_histogram</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_reading_histogram_from_file" href="#pig.test_pig.TestGameClass.test_reading_histogram_from_file">test_reading_histogram_from_file</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_roll_and_hold" href="#pig.test_pig.TestGameClass.test_roll_and_hold">test_roll_and_hold</a></code></li>
+<li><code><a title="pig.test_pig.TestGameClass.test_scores_getting" href="#pig.test_pig.TestGameClass.test_scores_getting">test_scores_getting</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pig.test_pig.TestHighScoreClass" href="#pig.test_pig.TestHighScoreClass">TestHighScoreClass</a></code></h4>
+<ul class="">
+<li><code><a title="pig.test_pig.TestHighScoreClass.test_reading_scores_from_file" href="#pig.test_pig.TestHighScoreClass.test_reading_scores_from_file">test_reading_scores_from_file</a></code></li>
+<li><code><a title="pig.test_pig.TestHighScoreClass.test_reading_scores_from_not_existing_file" href="#pig.test_pig.TestHighScoreClass.test_reading_scores_from_not_existing_file">test_reading_scores_from_not_existing_file</a></code></li>
+<li><code><a title="pig.test_pig.TestHighScoreClass.test_write_file" href="#pig.test_pig.TestHighScoreClass.test_write_file">test_write_file</a></code></li>
+<li><code><a title="pig.test_pig.TestHighScoreClass.test_write_to_already_exist_file" href="#pig.test_pig.TestHighScoreClass.test_write_to_already_exist_file">test_write_to_already_exist_file</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pig.test_pig.TestPlayerClass" href="#pig.test_pig.TestPlayerClass">TestPlayerClass</a></code></h4>
+<ul class="">
+<li><code><a title="pig.test_pig.TestPlayerClass.test_roll_of_player" href="#pig.test_pig.TestPlayerClass.test_roll_of_player">test_roll_of_player</a></code></li>
+<li><code><a title="pig.test_pig.TestPlayerClass.test_roll_of_player_frequency" href="#pig.test_pig.TestPlayerClass.test_roll_of_player_frequency">test_roll_of_player_frequency</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
