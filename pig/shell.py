@@ -10,6 +10,7 @@ import random
 import json
 from game import Game
 import highscore
+import histogram
 
 
 class Shell(cmd.Cmd):
@@ -402,31 +403,11 @@ class Shell(cmd.Cmd):
         h_s.write_into_file(filename)
 
     def _do_write_histogram(self):
-        """Write dice frequency of this player."""
-        histogram_array = self.game.player_1.frequency
-        histogram_map = {
-            str(i+1): freq for i,
-            freq in enumerate(histogram_array)
-            }
-        histogram_data = {
-            "player_name": self.game.player_1.name,
-            "hist": histogram_map
-            }
-
-        try:
-            with open("histogram.json", "r", encoding="utf-8") as file:
-                existing_data = json.load(file)
-        except FileNotFoundError:
-            existing_data = []
-
-        existing_data.append(histogram_data)
-
-        with open(
-            "histogram.json",
-            "w",
-            encoding="utf-8"
-        ) as histogram_json_file:
-            json.dump(existing_data, histogram_json_file, indent=2)
+        hist = histogram.Histogram()
+        hist.set_info(
+            self.game.player_1.name, self.game.player_1.frequency
+            )
+        hist.write_into_file("histogram.json")
 
     def _do_computer_plays_now(self):
         print(f"{self.game.computer.name} plays now")
@@ -543,7 +524,8 @@ class Shell(cmd.Cmd):
             print("\n")
             return
         print("\n")
-        histogram_data = self.game.read_histogram("histogram.json")
+        hist = histogram.Histogram()
+        histogram_data = hist.read_histogram("histogram.json")
 
         if len(histogram_data) == 0:
             print("\n")
