@@ -111,12 +111,4 @@ class Game:
         x.append(self.computer.difficulty)
         return x
 
-    def read_histogram(self, filename):
-        """Read histogram frequency from File."""
-        try:
-            with open(filename, "r", encoding="utf-8") as file:
-                histogram_data = json.load(file)
-        except FileNotFoundError:
-            histogram_data = []
-
-        return histogram_data
+    
