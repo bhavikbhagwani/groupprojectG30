@@ -12,6 +12,7 @@ import computer
 import player
 import game
 import highscore
+import histogram
 
 
 class TestDiceClass(unittest.TestCase):
@@ -242,44 +243,6 @@ class TestGameClass(unittest.TestCase):
         res = game_test.check_if_computer_wins(4, 30)
         self.assertFalse(res)
 
-    def test_reading_histogram_from_file(self):
-        """Test Reading Histogram."""
-        game_test = game.Game()
-        with tempfile.NamedTemporaryFile(
-            mode='w',
-            delete=False,
-            suffix=".json"
-        ) as temp_file:
-            temp_filename = temp_file.name
-            game_data = {
-                "player_name": "tattu",
-                "hist": {
-                    "1": 2,
-                    "2": 4,
-                    "3": 1,
-                    "4": 3,
-                    "5": 3,
-                    "6": 4
-                }
-            }
-            json.dump([game_data], temp_file)
-
-        try:
-            histogram_data = game_test.read_histogram(temp_filename)
-
-            self.assertIsInstance(histogram_data, list)
-
-        finally:
-            os.remove(temp_filename)
-
-    def test_reading_histogram(self):
-        """Test Reading From Not Existing Histogram File."""
-        game_test = game.Game()
-
-        histogram_data = game_test.read_histogram("non-existing_2.json")
-        self.assertEqual(len(histogram_data), 0)
-
-
 class TestHighScoreClass(unittest.TestCase):
     """Test the HighScore Class."""
 
@@ -354,6 +317,117 @@ class TestHighScoreClass(unittest.TestCase):
         scores = highscore_test.read_from_file("non-existing.json")
         self.assertEqual(len(scores), 0)
 
+
+class TestHistogramClass(unittest.TestCase):
+    """Test the Histogram Class."""
+
+    def test_write_file(self):
+        """Testing file writing."""
+        histogram_test = histogram.Histogram()
+        name_example = "nameEx"
+        freq_list_ex = []
+        freq_list_ex.append(3)
+        freq_list_ex.append(4)
+        freq_list_ex.append(2)
+        freq_list_ex.append(1)
+        freq_list_ex.append(3)
+        freq_list_ex.append(1)
+        histogram_test.set_info(
+            name_example,
+            freq_list_ex)
+
+        game_data = histogram_test.write_into_file("tryjson.json")
+
+        expected_data = {
+            "player_name": "nameEx",
+            "hist": {
+            "1": 3,
+            "2": 4,
+            "3": 2,
+            "4": 1,
+            "5": 3,
+            "6": 1
+            }
+        }
+
+        self.assertEqual(game_data, expected_data)
+        os.remove("tryjson.json")
+
+    def test_write_to_already_exist_file(self):
+        """Test writing into file that already has data."""
+        histogram_test = histogram.Histogram()
+        name_example = "nameEx"
+        freq_list_ex = [3,4,2,1,3,1]
+        histogram_test.set_info(
+            name_example,
+            freq_list_ex)
+
+        histogram_test.write_into_file("tryjson.json")
+        histogram_test = histogram.Histogram()
+        histogram_test.set_info("nameEx2", [1,2,3,4,5,6])
+        game_data_2 = histogram_test.write_into_file("tryjson.json")
+
+        expected_data = {
+            "player_name": "nameEx2",
+            "hist": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6
+            }
+        }
+
+        self.assertEqual(game_data_2, expected_data)
+        os.remove("tryjson.json")
+
+    def test_reading_scores_from_file(self):
+        """Test Readinng From File."""
+        histogram_test = histogram.Histogram()
+        name_example = "nameEx"
+        freq_list_ex = [3,4,2,1,3,1]
+        histogram_test.set_info(
+            name_example,
+            freq_list_ex)
+        with tempfile.NamedTemporaryFile(
+            mode='w',
+            delete=False,
+            suffix=".json"
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                "player_name": "nameEx2",
+                "hist": {
+                "1": 1,
+                "2": 2,
+                "3": 3,
+                "4": 4,
+                "5": 5,
+                "6": 6
+                }
+            }
+            json.dump([game_data], temp_file)
+
+        try:
+            scores = histogram_test.read_histogram(temp_filename)
+
+            self.assertIsInstance(scores, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_scores_from_not_existing_file(self):
+        """Test Reading From Non Existing File."""
+        histogram_test = histogram.Histogram()
+        name_example = "nameEx"
+        freq_list_ex = [3,4,2,1,3,1]
+        histogram_test.set_info(
+            name_example,
+            freq_list_ex)
+
+        scores = histogram_test.read_histogram("non-existing.json")
+        self.assertEqual(len(scores), 0)
 
 if __name__ == "__main__":
     unittest.main()
