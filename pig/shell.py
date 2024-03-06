@@ -396,7 +396,7 @@ class Shell(cmd.Cmd):
         print("\n")
 
     def _do_write_into_file(self, name, score, rounds, difficulty, filename):
-        
+
         h_s = highscore.HighScore()
         h_s.set_info(name, score, rounds, difficulty)
         h_s.write_into_file(filename)

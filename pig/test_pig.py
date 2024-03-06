@@ -242,8 +242,6 @@ class TestGameClass(unittest.TestCase):
         res = game_test.check_if_computer_wins(4, 30)
         self.assertFalse(res)
 
-    
-
     def test_reading_histogram_from_file(self):
         """Test Reading Histogram."""
         game_test = game.Game()
@@ -281,6 +279,7 @@ class TestGameClass(unittest.TestCase):
         histogram_data = game_test.read_histogram("non-existing_2.json")
         self.assertEqual(len(histogram_data), 0)
 
+
 class TestHighScoreClass(unittest.TestCase):
     """Test the HighScore Class."""
 
@@ -300,7 +299,7 @@ class TestHighScoreClass(unittest.TestCase):
 
         self.assertEqual(game_data, expected_data)
         os.remove("tryjson.json")
-    
+
     def test_write_to_already_exist_file(self):
         """Test writing into file that already has data."""
         highscore_test = highscore.HighScore()
@@ -354,6 +353,7 @@ class TestHighScoreClass(unittest.TestCase):
 
         scores = highscore_test.read_from_file("non-existing.json")
         self.assertEqual(len(scores), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -111,7 +111,6 @@ class Game:
         x.append(self.computer.difficulty)
         return x
 
-
     def read_histogram(self, filename):
         """Read histogram frequency from File."""
         try:
