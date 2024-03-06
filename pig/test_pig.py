@@ -39,6 +39,11 @@ class TestDiceClass(unittest.TestCase):
 class TestComputerClass(unittest.TestCase):
     """Test the Computer Class."""
 
+    def test_init_default_object(self):
+        """Test Init of Computer."""
+        computer_test = computer.Computer()
+        self.assertIsInstance(computer_test, computer.Computer)
+
     def test_setting_difficulty(self):
         """Set difficulty and test if either easy,medium or hard."""
         computer_test = computer.Computer()
@@ -83,6 +88,11 @@ class TestComputerClass(unittest.TestCase):
 
 class TestPlayerClass(unittest.TestCase):
     """Test the Computer Class."""
+
+    def test_init_default_object(self):
+        """Test Init of Player."""
+        player_test = player.Player()
+        self.assertIsInstance(player_test, player.Player)
 
     def test_roll_of_player(self):
         """Testing roll of player."""
@@ -247,6 +257,11 @@ class TestGameClass(unittest.TestCase):
 class TestHighScoreClass(unittest.TestCase):
     """Test the HighScore Class."""
 
+    def test_init_default_object(self):
+        """Test Init HighScore."""
+        highscore_test = highscore.HighScore()
+        self.assertIsInstance(highscore_test, highscore.HighScore)
+
     def test_write_file(self):
         """Testing file writing."""
         highscore_test = highscore.HighScore()
@@ -321,6 +336,11 @@ class TestHighScoreClass(unittest.TestCase):
 
 class TestHistogramClass(unittest.TestCase):
     """Test the Histogram Class."""
+
+    def test_init_default_object(self):
+        """Test Init HighScore."""
+        histogram_test = histogram.Histogram()
+        self.assertIsInstance(histogram_test, histogram.Histogram)
 
     def test_write_file(self):
         """Testing file writing."""
