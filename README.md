@@ -5,19 +5,27 @@ Welcome to the Pig Dice Game - Normal Variation! You are the player and you play
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
 
-## INSTALLATION OF PROJECT
-
-We set our GitHub Repository to private, meaning nobody is able to clone it without SSH keys.
-However, you will have a zip file containing all files. 
-Download this zip file, extract the files and open them
-
 ## PYTHON
 
 Check that you have the latest version of Python 3 installed
 
+## INSTALLATION OF PROJECT
+
+We set our GitHub Repository to private, meaning nobody is able to clone it without SSH keys.
+However, you will have a zip file containing all files. 
+Download this zip file and extract the files. Move this 'game' folder into a familiar location in your computer
+
+## TERMINAL
+
+This game will be played in the terminal. Open Git Bash and navigate to the files
+You can use 'cd' to direct you to your destination:
+
+                cd game
+
+DON'T go into the 'pig' directory using 'cd pig' YET.
 ## MAKE AND MAKEFILE
 
-We recommend working with the MakkeFile so make sure you have 'make' installed in your machine to make it easy for you
+We recommend working with the MakeFile so make sure you have 'make' installed in your machine to make it easy for you
 to compile, build and have certain features such as for testing and generating documentation
 If not installed see video on how to install:
 
@@ -30,29 +38,33 @@ to compile, build, test and generate documentation
 
 ## SETTING VENV
 
-Once having 'make' installed, first of all you need to set the virtual environment and activate it
+Once having 'make' installed, first of all you need to set the virtual environment and activate it. 
+(Make sure you are in the game directory)
 You can set a virtual environment using 
 
             make venv
 
-You can activate the virtual environment using
+Then, you can activate the virtual environment using
 
             . .venv/Scripts/activate
 
 You should see a (.venv) in your terminal
 This will allow all features to be found and run
-You can deactivate the virtual environment by using
+You can later deactivate the virtual environment by using
 
             deactivate
 
 ## WHAT NEXT   
 
-After having make installed and your venv set up, check your python version using 'make version'
-Make sure your python version is below 3.12.0 as 'make pdoc' will only work with versions 
+After having make installed and your venv set up, check your python version using 
+
+                make version
+
+Make sure your python version is below 3.12.0 like 3.11.5 as 'make pdoc' will only work with versions 
 below 3.12.0 due to an error encountered where "No module named 'distutils'" occured.
 You can do all other things apart from make pdoc if you have version 3.12.0 or above.
 
-Noe, install all needed packages from the file requirements.txt using
+Now, install all needed packages from the file requirements.txt using
 
         make install
 
@@ -69,10 +81,15 @@ The first player to reach a score 50 points wins the game.
 You can also cheat in the game, but your results or stats won't be stored if you cheat
 
 ## RUN GAME
+NOW, you can go to the 'pig' directory.
 
-To run the game, one should go to the 'pig' directory and run
+To run the game, one should go to the 'pig' directory using
 
-                    python main.py
+                cd pig
+
+and run
+
+                python main.py
 
 ## HELP IN GAME, HOW TO PLAY AND OTHER COMMANDS
 
@@ -110,15 +127,14 @@ implement
 
             make test 
 
-and
+'make test' will run the linters, provide a code rating and provide you with test coverage
 
-            make coverage
+You can also see just the test coverage separetaly by typing
 
+                make coverage
 
-'make test' will run the linters and provide a rating for the overall code
-'make coverage' will inform you about the test coverage throughout the code
+This will inform you about the test coverage throughout the code
 providing percentages of how much code was covered using unit tests.
-'make test' will also run 'make coverage' which you can do separately
 
 You can also just run linters using
 
@@ -128,8 +144,9 @@ or separetaly using
 
         make flake8         make pylint
 
-After running 'make test' or 'make coverage', a html file will be
-created which you can open with your browser to have a better visualization of the code coverage
+After running 'make test' or 'make coverage', a htmlcov/ folder will be 
+created with html files that you can open with your browser to have a 
+better visualization of the code coverage
 
 ## DOCUMENTATION
 
@@ -154,7 +171,7 @@ After the installation is done you can check what version you got.
 pydoc
 
 Use pydoc to generate documentation for any class.
-You will get a quick and readable documentation generated from your source code.
+You will get a quick and readable documentation generated from your source code into your terminal.
 For example with Dice class
 
         cd pig/dice
@@ -164,20 +181,16 @@ You can also generate a html page for the documentation for any class
 
         python -m pydoc -w dice
 
-This will HTML documents inside doc/pydoc
-Open the generated html documentation in your web browser.
-
-(make sure you are in the 'pig directory when running all these commands')
+This will create HTML documents inside doc/pydoc
+You can open the generated html documentation in your web browser.
 
 To generate UML diagrams you can just type
 
         make pyreverse
 
-(make sure you are in the 'pig directory when running all these commands')
-
 This will generate UML diagrams inside doc/pyreverse
 
-To run both pydoc for all classes/files in directory and pyreverse for UML diagram, 
+To run both pydoc for all classes/files in directory and pyreverse for UML diagrams, 
 there is a target for both these things in the Makefile by typing
 
         make pdoc
