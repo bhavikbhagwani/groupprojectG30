@@ -11,6 +11,7 @@ import dice
 import computer
 import player
 import game
+import highscore
 
 
 class TestDiceClass(unittest.TestCase):
@@ -241,37 +242,7 @@ class TestGameClass(unittest.TestCase):
         res = game_test.check_if_computer_wins(4, 30)
         self.assertFalse(res)
 
-    def test_reading_scores_from_file(self):
-        """Test Readinng From File."""
-        game_test = game.Game()
-        with tempfile.NamedTemporaryFile(
-            mode='w',
-            delete=False,
-            suffix=".json"
-        ) as temp_file:
-            temp_filename = temp_file.name
-            game_data = {
-                "player_name": "player_name",
-                "score": "player_score",
-                "num_rounds": "player_rounds",
-                "difficulty": "player_difficulty"
-                }
-            json.dump([game_data], temp_file)
-
-        try:
-            scores = game_test.read_from_file(temp_filename)
-
-            self.assertIsInstance(scores, list)
-
-        finally:
-            os.remove(temp_filename)
-
-    def test_reading_scores_from_not_existing_file(self):
-        """Test Reading From Non Existing File."""
-        game_test = game.Game()
-
-        scores = game_test.read_from_file("non-existing.json")
-        self.assertEqual(len(scores), 0)
+    
 
     def test_reading_histogram_from_file(self):
         """Test Reading Histogram."""
@@ -310,6 +281,79 @@ class TestGameClass(unittest.TestCase):
         histogram_data = game_test.read_histogram("non-existing_2.json")
         self.assertEqual(len(histogram_data), 0)
 
+class TestHighScoreClass(unittest.TestCase):
+    """Test the HighScore Class."""
+
+    def test_write_file(self):
+        """Testing file writing."""
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info("nameEx", 55, 10, "medium")
+
+        game_data = highscore_test.write_into_file("tryjson.json")
+
+        expected_data = {
+            "player_name": "nameEx",
+            "score": 55,
+            "num_rounds": 10,
+            "difficulty": "medium"
+        }
+
+        self.assertEqual(game_data, expected_data)
+        os.remove("tryjson.json")
+    
+    def test_write_to_already_exist_file(self):
+        """Test writing into file that already has data."""
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info("nameEx", 55, 10, "medium")
+        highscore_test.write_into_file("tryjson.json")
+
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info("nameEx2", 60, 11, "easy")
+        game_data_2 = highscore_test.write_into_file("tryjson.json")
+
+        expected_data = {
+            "player_name": "nameEx2",
+            "score": 60,
+            "num_rounds": 11,
+            "difficulty": "easy"
+        }
+
+        self.assertEqual(game_data_2, expected_data)
+        os.remove("tryjson.json")
+
+    def test_reading_scores_from_file(self):
+        """Test Readinng From File."""
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info("nameEx", 55, 10, "medium")
+        with tempfile.NamedTemporaryFile(
+            mode='w',
+            delete=False,
+            suffix=".json"
+        ) as temp_file:
+            temp_filename = temp_file.name
+            game_data = {
+                "player_name": "player_name",
+                "score": "player_score",
+                "num_rounds": "player_rounds",
+                "difficulty": "player_difficulty"
+                }
+            json.dump([game_data], temp_file)
+
+        try:
+            scores = highscore_test.read_from_file(temp_filename)
+
+            self.assertIsInstance(scores, list)
+
+        finally:
+            os.remove(temp_filename)
+
+    def test_reading_scores_from_not_existing_file(self):
+        """Test Reading From Non Existing File."""
+        highscore_test = highscore.HighScore()
+        highscore_test.set_info("nameEx", 55, 10, "medium")
+
+        scores = highscore_test.read_from_file("non-existing.json")
+        self.assertEqual(len(scores), 0)
 
 if __name__ == "__main__":
     unittest.main()
