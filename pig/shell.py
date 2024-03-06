@@ -9,6 +9,7 @@ import cmd
 import random
 import json
 from game import Game
+import highscore
 
 
 class Shell(cmd.Cmd):
@@ -76,7 +77,8 @@ class Shell(cmd.Cmd):
 
         print("\n")
         name = arg.strip()
-        scores = self.game.read_from_file("json_file.json")
+        h_s = highscore.HighScore()
+        scores = h_s.read_from_file("json_file.json")
         for player_stats in scores:
 
             player_name = player_stats.get("player_name")
@@ -347,7 +349,8 @@ class Shell(cmd.Cmd):
         print("If you don't see your game here, ", end="")
         print("you cheated or haven't played yet")
 
-        scores = self.game.read_from_file("json_file.json")
+        h_s = highscore.HighScore()
+        scores = h_s.read_from_file("json_file.json")
         if len(scores) == 0:
             print("No games found yet")
             print("\n")
@@ -393,28 +396,10 @@ class Shell(cmd.Cmd):
         print("\n")
 
     def _do_write_into_file(self, name, score, rounds, difficulty, filename):
-        """Write Player Stats in File."""
-        player_name = name
-        player_score = score
-        player_rounds = rounds
-        player_difficulty = difficulty
-
-        game_data = {
-            "player_name": player_name,
-            "score": player_score,
-            "num_rounds": player_rounds,
-            "difficulty": player_difficulty
-        }
-
-        try:
-            with open(filename, "r", encoding="utf-8") as file:
-                existing_data = json.load(file)
-        except FileNotFoundError:
-            existing_data = []
-
-        existing_data.append(game_data)
-        with open(filename, "w", encoding="utf-8") as file:
-            json.dump(existing_data, file, indent=4)
+        
+        h_s = highscore.HighScore()
+        h_s.set_info(name, score, rounds, difficulty)
+        h_s.write_into_file(filename)
 
     def _do_write_histogram(self):
         """Write dice frequency of this player."""
