@@ -17,7 +17,8 @@ Download this zip file and extract the files. Move this 'game' folder into a fam
 
 ## TERMINAL
 
-This game will be played in the terminal. Open Git Bash and navigate to the files
+This game will be played in the terminal. We encourage you to play in Git Bash as a terminal. 
+Open Git Bash and navigate to the files
 You can use 'cd' to direct you to your destination:
 
                 cd game
