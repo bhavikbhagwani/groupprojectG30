@@ -185,21 +185,23 @@ You can also generate a html page for the documentation for any class
 This will create HTML documents inside doc/pydoc
 You can open the generated html documentation in your web browser.
 
+To generate HTML documentation for all classes just type
+
+        make pdoc
+
+This will generate HTML documentation inside doc/pdoc
+
 To generate UML diagrams you can just type
 
         make pyreverse
 
 This will generate UML diagrams inside doc/pyreverse
 
-To run both pydoc for all classes/files in directory and pyreverse for UML diagrams, 
-there is a target for both these things in the Makefile by typing
+Now, you should have a doc/ directory inside pig with pyreverse/ and pdoc/
 
-        make pdoc
+You can also just run the two targets directly (pyreverse and pdoc) using
 
-This will create a doc/ folder in the 'pig' directory with with folders:
-
-    pydoc
-    pyreverse
+                make doc
 
 The pydoc folder will have HTML documentation for all classes found and
 the pyreverse folder will have UML diagrams for all classes found
