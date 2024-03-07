@@ -1,7 +1,7 @@
 #  PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
 PIG DICE GAME (NORMAL VARIATION WITH 50 POINTS)
 
-Welcome to the Pig Dice Game - Normal Variation! You are the player and you play against the computer.
+Welcome to the Pig Dice Game - Normal Variation with 50 points! You are the player and you play against the computer.
 You both have the objective to roll the dice and accumulate points to 
 reach 50 points and win the game. Have fun and good luck.
 
@@ -40,12 +40,12 @@ to compile, build, test and generate documentation
 ## SETTING VENV
 
 Once having 'make' installed, first of all you need to set the virtual environment and activate it. 
-(Make sure you are in the game directory)
+(Make sure you are in the game/ directory)
 You can set a virtual environment using 
 
             make venv
 
-Then, you can activate the virtual environment using
+Then, you should activate the virtual environment using
 
             . .venv/Scripts/activate
 
@@ -61,9 +61,9 @@ After having make installed and your venv set up, check your python version usin
 
                 make version
 
-Make sure your python version is below 3.12.0 like 3.11.5 as 'make pdoc' will only work with versions 
+Make sure your python version is below 3.12.0 like 3.11.5 as 'make pdoc' or 'make doc' will only work with versions 
 below 3.12.0 due to an error encountered where "No module named 'distutils'" occured.
-You can do all other things apart from make pdoc if you have version 3.12.0 or above.
+You can do all other things apart from 'make pdoc' or 'make doc' if you have version 3.12.0 or below.
 
 Now, install all needed packages from the file requirements.txt using
 
@@ -103,19 +103,18 @@ To start/restart the game you shall type 'start'.
 After this you should fill you name in and set the difficulty
 This difficulty manages the intelligence of the computer
 
-You can start/restart, change name and set difficulty anytime you want
-
 The previous 2 steps can be done faster by typing 'default' (play with default settings)
 
 After this you can roll, hold or cheat using 'roll', 'hold', or 'cheat'
 If you cheat, your results and stats won't be stored/recorded. 
-A useful command is 'show' to show the results of you and the computer in the current game
+A useful command is 'show' to show the player's and computer's score in 
+the current game at that current moment
 
 Other commands:
 
 rules - to see the rules and instructions of the game
 
-scores - to see the highscore list from the played games so far (non-cheated only)
+scores - to see the highscore list from the won games so far (non-cheated only)
 
 exit - exit or quits the game
 
