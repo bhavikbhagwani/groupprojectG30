@@ -98,7 +98,7 @@ You are free to type '?' or 'help' and a command afterwards to get a description
 
 You can get the list of commands just by typing '?' or 'help'
 
-To start/restart the game you shall type 'start'.
+To start/restart the game you shall type 'start'
 
 After this you should fill you name in and set the difficulty
 This difficulty manages the intelligence of the computer
