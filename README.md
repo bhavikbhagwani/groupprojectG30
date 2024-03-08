@@ -63,7 +63,7 @@ After having make installed and your venv set up, check your python version usin
 
 Make sure your python version is below 3.12.0 like 3.11.5 as 'make pdoc' or 'make doc' will only work with versions 
 below 3.12.0 due to an error encountered where "No module named 'distutils'" occured.
-You can do all other things apart from 'make pdoc' or 'make doc' if you have version 3.12.0 or below.
+You can do all other things apart from 'make pdoc' or 'make doc' if you have version 3.12.0 or above.
 
 Now, install all needed packages from the file requirements.txt using
 
@@ -78,7 +78,7 @@ You can now check what packages that are installed using
 Player and computer take turns rolling a die.
 If either rolls a 1, they lose their current round's points, and it's the next opponent's turn.
 Either can choose to hold, adding their current round's points to their total score.
-The first player to reach a score 50 points wins the game.
+The first player to reach a score of 50 points wins the game.
 You can also cheat in the game, but your results or stats won't be stored if you cheat
 
 ## RUN GAME
@@ -152,7 +152,7 @@ better visualization of the code coverage
 
 Documentation is a helpful feature to help understand the code for other developers
 First of all install the 'dot' command  to help generate the UML diagrams from the source code
-For windows, you can do it through chocolatey in Poweshell as administrator:
+For windows, you can do it through chocolatey in Powershell as administrator:
 
         choco install graphviz
 
@@ -167,22 +167,6 @@ Debian (and other Linux), through your package manager.
 After the installation is done you can check what version you got.
 
         $ dot -V
-
-pydoc
-
-Use pydoc to generate documentation for any class.
-You will get a quick and readable documentation generated from your source code into your terminal.
-For example with Dice class
-
-        cd pig/dice
-        python -m pydoc dice
-
-You can also generate a html page for the documentation for any class
-
-        python -m pydoc -w dice
-
-This will create HTML documents inside doc/pydoc
-You can open the generated html documentation in your web browser.
 
 To generate HTML documentation for all classes just type
 
@@ -204,6 +188,12 @@ You can also just run the two targets directly (pyreverse and pdoc) using
 
 The pydoc folder will have HTML documentation for all classes found and
 the pyreverse folder will have UML diagrams for all classes found
+
+## ADDITIONAL
+
+To remove the htmlcov/ and the doc/ folder to maybe start over again you can type
+
+        make clean-doc
 
 ## CONCLUSIONS
 
